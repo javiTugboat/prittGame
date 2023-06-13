@@ -3,7 +3,10 @@
         "target": "ES2019",
         "module": "commonjs",
         "outDir": "../../dist/server",
-        "esModuleInterop": true
+        "esModuleInterop": true       
+
+
+
     },
-    "include": ["**/*.ts"]
+    "include": ["**/*.ts","resources/**/*.ts"]
 }

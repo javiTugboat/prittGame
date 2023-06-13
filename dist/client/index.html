@@ -3,16 +3,74 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Three.js TypeScript Tutorials by Sean Bradley</title>
+        <title>Pritt</title>
         <style>
+            /* @font-face {
+                font-family:Nunito;
+                src: url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+                } */
+                @font-face {
+                font-family:FuturaMedium;
+                src: url(./fonts/Futura-Condensed-Medium.otf);
+                }
+                @font-face {
+                font-family:FuturaExtra;
+                src: url(./fonts/Futura-Condensed-Extra-Bold.otf);
+                }
             body {
                 overflow: hidden;
                 margin: 0px;
+                position:absolute;
+                width:100%;
+                height:100%;
+                top:0%;
+                left:0%;
+                
             }
+
+          
+
         </style>
     </head>
 
     <body>
+        <div id = "startDiv" class = "startDiv">
+    
+            <div id  = "playButtonOne" class="mediumText button">
+            <div id ="buttonTextOne"class="mediumText buttonText">Tap to Start</div>
+              
+            </div>
+          </div>
+        <div id="btn"></div>
+        <div id="restartDiv">
+            <div id = "scoreHolder">
+                <div id ="scoreTitle" > BEST SCORE </div>
+                <div id ="bestScore" > 0 </div>
+              </div>
+              <div id  = "playButton" >
+                <div id ="buttonText">Tap to play</div>
+                
+              </div>
+
+        </div>
+
+        <div id = "leftBorder"></div>
+        <div id = "rightBorder"></div>
+        
+        <div id = "prittBar">
+            <img id = "prittLogo" src ="./img/prittLogo.png">
+            <div id ="score"> 0 </div>
+        </div>
+
+        <div id = "loadingScreen" style = "background-color:#e00e20;">
+            <!-- <div id = "loadingScreen" > -->
+
+            <div id ="loading-animation">
+               
+              </div>
+        </div>
+
         <script type="module" src="bundle.js"></script>
+
     </body>
 </html>
