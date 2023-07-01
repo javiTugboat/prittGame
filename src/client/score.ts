@@ -5,6 +5,10 @@ const scoreText= document.getElementById( 'score' );
 const bestText= document.getElementById( 'bestScore' );
 // const prittLogo = document.getElementById("prittLogo");
 var strNumber,strBestScore;
+import * as background from './background'
+import * as clouds from './clouds'
+
+import {cloudTopIncrement,cloudBottomIncrement} from './clouds'
 
 
 export function countScore(){
@@ -12,6 +16,8 @@ export function countScore(){
 scoreCounter ++;
 strNumber = scoreCounter.toString();
 scoreText.innerHTML = strNumber;
+
+checkScore();
 
 } 
 
@@ -33,3 +39,14 @@ export function resetScore(){
     
 } 
 
+function checkScore(){
+
+    if (scoreCounter % 500 === 0) {
+        console.log("500pointmark")
+        background.addSpeed()
+        clouds.addCloudSpeed()
+      }
+
+
+
+}

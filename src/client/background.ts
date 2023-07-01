@@ -5,6 +5,7 @@ import { scenery } from './client'
 var time = 0,background,staticBg,backgroundWidth
 var texture = new THREE.TextureLoader().load('img/width_fondo_bar2.png')
 var texture2 = new THREE.TextureLoader().load('img/staticBg.jpg')
+var bgTimeIncrement = 0.0045
 
 export function createBackGround () {
     // Valor para mover el fondo
@@ -42,5 +43,13 @@ export function createBackGround () {
 
   export function updateBackgroundMovement(){
     time++;
-    texture.offset.x = time*0.0035;
+    texture.offset.x = time*bgTimeIncrement;
   }
+
+
+  export function addSpeed(){
+    // bgTimeIncrement = bgTimeIncrement * 1.05;
+    console.log(bgTimeIncrement)
+
+  }
+  export {bgTimeIncrement}

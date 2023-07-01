@@ -31,6 +31,7 @@ loader.load( 'models/character.glb', function (characterMesh) {
     characterScene = characterVar.scenes[0];
     characterScene.position.set (-2,0.5,2 );
     characterScene.rotation.set (-0.2,1,-0.2);
+    characterScene.scale.set (1.5,1.5,1.5);
 
 
   })

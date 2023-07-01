@@ -18,7 +18,7 @@ var fallAnimPlayed = false;
 export function addCharacter(){
 
     //crear geometria temporal
-     y = 1.2;
+     y = 1.8;
     characterGroup = new THREE.Group(); 
     geometry = new THREE.BoxGeometry (y,y,y);
     // Las primitivas básicas se crean centradas en el origen

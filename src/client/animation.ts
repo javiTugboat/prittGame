@@ -53,7 +53,7 @@ animationDown();
 function onFinishUp(){
     animUpPlaying = false; 
 
-    console.log("finishUp")
+    // console.log("finishUp")
 
 }
 

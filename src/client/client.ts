@@ -12,6 +12,7 @@ import * as listeners from './listeners'
 import * as collisions from './collisions'
 import * as score from './score'
 import * as animations from './animation'
+import * as loader from './loader'
 
 
 const scene = new THREE.Scene();
@@ -42,6 +43,8 @@ function onWindowResize() {
 }
 
 //A D D    M O D U L E S   H E R E
+loader.launchLoader();
+
 styles.addStyles();
 styles.checkScreenSize()
 

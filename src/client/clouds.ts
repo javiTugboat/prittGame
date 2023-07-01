@@ -13,6 +13,8 @@ var cloudArray,boxArray = [];
 var cloudGroupTop = new THREE.Group();
 var allCloudsGroup = new THREE.Group();
 
+var cloudTopIncrement = 0.08,cloudBottomIncrement = 0.079;
+
 export function createBoundingBoxes(){
 
     boundBoxGeometry = new THREE.BoxGeometry (3.8,2,2);
@@ -115,8 +117,8 @@ function resizeClouds(){
 export function moveClouds(){
     
 
-    cloudGroupTop.position.x -= 0.07 ;
-    cloudGroupBottom.position.x -= 0.069 ;
+    cloudGroupTop.position.x -= cloudTopIncrement ;
+    cloudGroupBottom.position.x -= cloudBottomIncrement ;
 
     if (cloudGroupBottom.position.x && cloudGroupTop.position.x <= -8){
       cloudGroupTop.position.x = cloudUpWidth * 2; 
@@ -129,4 +131,17 @@ export function moveClouds(){
 
 }
 
-export {boundBoxMesh,boundBoxMeshBottom,cloudGroupTop,cloudGroupBottom,allCloudsGroup,boxArray}
+export function addCloudSpeed(){
+    cloudTopIncrement = cloudTopIncrement * 1.1;
+    console.log(cloudTopIncrement);
+    cloudBottomIncrement = cloudBottomIncrement * 1.1;
+    console.log(cloudBottomIncrement);
+
+}
+
+export function resetCloudSpeed(){
+    cloudTopIncrement = 0.08
+    cloudBottomIncrement = 0.079
+}
+
+export {boundBoxMesh,boundBoxMeshBottom,cloudGroupTop,cloudGroupBottom,allCloudsGroup,boxArray,cloudTopIncrement,cloudBottomIncrement}

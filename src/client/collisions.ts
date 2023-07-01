@@ -7,6 +7,7 @@ import { gameStarted,gameEnded } from './client'
 // import * as score from './score.js';
 import * as character from './character';
 import * as styles from './styles';
+import * as clouds from './clouds';
 
 import * as THREE from 'three'
 import * as appControl from './client';
@@ -18,9 +19,9 @@ export function resetAll(){
 cloudGroupBottom.position.x = 8;
 cloudGroupTop.position.x = 8;
 allCloudsGroup.position.y = 0;  
+clouds.resetCloudSpeed()
 
 gameStarted == false;
-
 
 // score.resetScore();
 
