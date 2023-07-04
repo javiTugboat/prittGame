@@ -7,6 +7,8 @@ import gsap from "gsap"
 const button = document.getElementById('btn');
 const restartDiv = document.getElementById('restartDiv');
 const startDiv = document.getElementById('startDiv');
+const character1 = document.getElementById('character1');
+const menu2 = document.getElementById('menu2' );
 
 
 export function addListeners(){
@@ -16,6 +18,9 @@ export function addListeners(){
 
   
     restartDiv.addEventListener('click',moveAgain);
+
+    character1.addEventListener('click',startGame);
+
 
 
    
@@ -43,5 +48,12 @@ function moveAgain(e){
 
     }, 100);
 }
+
+function startGame(e){
+
+    menu2.style.display = 'none';
+
+}
+
 
 

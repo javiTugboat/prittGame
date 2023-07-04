@@ -13,8 +13,8 @@ scenery.add (ambientLight);
 // Si no se le da punto de mira, apuntará al (0,0,0) en coordenadas del mundo
 // En este caso se declara como   atributo   para que sea un atributo accesible desde otros métodos.
 spotLight = new THREE.SpotLight( 0xffffff, 1);
-spotLight.position.set( 60, 60, 40 );
-
+spotLight.position.set( -19, 0, 30 );
+console.log("SPOTLIGHT",spotLight)
 scenery.add(spotLight)
 
 }

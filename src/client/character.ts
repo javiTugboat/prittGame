@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { scenery } from './client'
 import gsap from "gsap";
 // import { scenery,gameEnded } from './app.js'
+import { characterScene,characterVar } from './modelLoader'
 
 import * as collisions from './collisions';
 import * as appControl from './client';
@@ -32,7 +33,7 @@ export function addCharacter(){
     characterMesh = new THREE.Mesh( geometry, material);
     characterGroup.add(characterMesh)
     scenery.add(characterGroup)
-
+    console.log("CHARACTERGROUP",characterGroup)
 
 
     scaleX = scaleY = scaleZ = 0.1
@@ -65,13 +66,24 @@ export function addCharacter(){
     gsap.fromTo(characterGroup.position, { y: currentPos }, { y: flyPos, duration: 0.35, ease: 'back.out' });
 
     animations.animationLoop()
-    models.tilt()
+
+    animations.inflateParachute()
+    // models.tilt()  
+
+    gsap.to(characterScene.rotation, { duration: 0.4, z:-0.1, ease: "power2.out",onComplete:rotateBack });
+
+
+  }
+
+  function rotateBack(){
+    gsap.to(characterScene.rotation, { duration: 1, z:0.2, ease: "power1.inOut" });
 
   }
 
   export function fall(){
 
     checkBirdFallen();
+
     switch (true) {
         case characterGroup.position.y > 0.5:
           characterGroup.position.y -= 0.04;

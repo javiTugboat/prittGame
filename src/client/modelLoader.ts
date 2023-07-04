@@ -4,6 +4,7 @@ import { characterGroup } from './character'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as animations from './animation'
 import gsap from "gsap";
+import * as envmap from './envmap'
 
 const manager = new THREE.LoadingManager();
 
@@ -14,7 +15,7 @@ var characterMesh,characterVar,characterScene,currentYRot,currentXRot
  export function loadModel (){
 
 
-loader.load( 'models/character.glb', function (characterMesh) {
+loader.load( 'models/parapente.glb', function (characterMesh) {
  
 
 
@@ -27,12 +28,18 @@ loader.load( 'models/character.glb', function (characterMesh) {
 
         
       });
-    console.log("chatacterVar",characterVar)
     characterScene = characterVar.scenes[0];
     characterScene.position.set (-2,0.5,2 );
-    characterScene.rotation.set (-0.2,1,-0.2);
-    characterScene.scale.set (1.5,1.5,1.5);
 
+    //////CHARACTER ROTATION
+
+    console.log("characterROTATION",characterScene)
+
+    characterScene.rotation.set (0,1,0.1);
+    characterScene.scale.set (1.15,1.15,1.15);
+    envmap.addEnvMaps();
+
+    
 
   })
 

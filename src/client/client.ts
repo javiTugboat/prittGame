@@ -13,7 +13,9 @@ import * as collisions from './collisions'
 import * as score from './score'
 import * as animations from './animation'
 import * as loader from './loader'
-
+// import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+// import { SMAAPass } from 'three/examples/jsm/postprocessing/SMAAPass';
+const canvasDiv = document.getElementById("canvasDiv");
 
 const scene = new THREE.Scene();
 var scenery  = scene;
@@ -26,7 +28,23 @@ camera.lookAt(look);
 
 const renderer = new THREE.WebGLRenderer( {antialias: true})
 renderer.setSize(window.innerWidth, window.innerHeight)
-document.body.appendChild(renderer.domElement)
+
+///////ENVMAP STUFF
+const pmremGenerator = new THREE.PMREMGenerator( renderer );
+pmremGenerator.compileEquirectangularShader();
+
+
+
+renderer.toneMapping = THREE.LinearToneMapping;
+renderer.toneMappingExposure = 1;
+
+// const composer = new THREE.EffectComposer(renderer);
+// const smaaPass = new THREE.SMAAPass();
+// composer.addPass(smaaPass);
+
+
+// document.body.appendChild(renderer.domElement)
+canvasDiv.appendChild(renderer.domElement)
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
@@ -55,6 +73,7 @@ clouds.createClouds();
 lights.createLights();
 character.addCharacter();
 models.loadModel();
+
 
 function animateRender(){
 
@@ -114,4 +133,4 @@ export function endTheGame(){
 
 animate()
 animateRender()
-export{scenery,gameEnded,gameStarted}
+export{scenery,gameEnded,gameStarted,pmremGenerator}
