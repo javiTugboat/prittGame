@@ -6,6 +6,7 @@ import * as animations from './animation'
 import gsap from "gsap";
 import * as envmap from './envmap'
 import * as loaders from './loader'
+import { attribute } from './listeners'
 
 const manager = new THREE.LoadingManager();
 
@@ -52,7 +53,7 @@ loader.load( 'models/parapente.glb', function (characterMesh) {
 export function loadModel1 (){
 
 
-  loader.load( 'models/parapente.glb', function (characterMesh) {
+  loader.load( 'models/trekking.glb', function (characterMesh) {
    
   
   
@@ -84,6 +85,77 @@ export function loadModel1 (){
   
   }
 
+  export function loadModel2(){
+
+
+    loader.load( 'models/climber.glb', function (characterMesh) {
+     
+    
+    
+            characterVar = characterMesh;
+    
+          var model = characterVar.scene;
+              model.traverse((o) => {
+                if(o.isMesh) o.geometry.computeVertexNormals()
+                //  if (o.isMesh) o.material = characterinMaterial;
+    
+            
+          });
+        characterScene = characterVar.scenes[0];
+        characterScene.position.set (-2,0.5,2 );
+    
+        //////CHARACTER ROTATION
+    
+        console.log("characterROTATION",characterScene)
+    
+        characterScene.rotation.set (0,1,0.1);
+        characterScene.scale.set (1.15,1.15,1.15);
+        envmap.addEnvMaps();
+    
+        
+    
+      })
+    
+    
+    
+  } 
+
+
+  export function loadModel3(){
+
+
+    loader.load( 'models/climber.glb', function (characterMesh) {
+     
+    
+    
+            characterVar = characterMesh;
+    
+          var model = characterVar.scene;
+              model.traverse((o) => {
+                if(o.isMesh) o.geometry.computeVertexNormals()
+                //  if (o.isMesh) o.material = characterinMaterial;
+    
+            
+          });
+        characterScene = characterVar.scenes[0];
+        characterScene.position.set (-2,0.5,2 );
+    
+        //////CHARACTER ROTATION
+    
+        console.log("characterROTATION",characterScene)
+    
+        characterScene.rotation.set (0,1,0.1);
+        characterScene.scale.set (1.15,1.15,1.15);
+        envmap.addEnvMaps();
+    
+        
+    
+      })
+    
+    
+    
+  } 
+
 
 export function tilt(){
 
@@ -110,8 +182,31 @@ export function tiltBack(){
 manager.onLoad = function(){
     
   characterGroup.add(characterScene)
-  animations.addClips();
   loaders.removeSecondLoader();
+
+  switch (attribute){
+
+    case 'character1':
+      animations.addClips1();
+
+    break;
+
+    case 'character2':
+      animations.addClips2();
+
+    break;
+
+    case 'character3':
+
+    break;
+
+    case 'character4':
+        animations.addClips4();
+    break;
+    
+    default: 
+
+}
 
 }
 

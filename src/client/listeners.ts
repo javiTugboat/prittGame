@@ -62,7 +62,34 @@ function move(e){
     appControl.gameHasStarted();
     gsap.to(startDiv,  { autoAlpha:0, duration: 0.35, ease: 'power1.inOut' });
 
-    character.fly();
+
+    switch (attribute){
+
+        case 'character1':
+            character.fly1();
+
+        break;
+
+        case 'character2':
+            character.fly2();
+
+        break;
+
+        case 'character3':
+
+        break;
+
+        case 'character4':
+            character.fly();
+
+        break;
+        
+        default: 
+
+    }
+
+
+
 }
 
 function moveAgain(e){
@@ -136,13 +163,37 @@ function startGame(e){
     switch (attribute){
 
         case 'character1':
+            
             console.log('character1')
-     
+
+            loader.launchSecondLoader()
+            
+            setTimeout(function() {
+            
+                appControl.setScene()
+                appControl.loadModulesChar1()
+                appControl.animateRender()
+                appControl.animate()      
+            
+            }, 500);
+           
 
         break;
 
         case 'character2':
             console.log('character2')
+
+            loader.launchSecondLoader()
+            
+            setTimeout(function() {
+            
+                appControl.setScene()
+                appControl.loadModulesChar2()
+                appControl.animateRender()
+                appControl.animate()      
+            
+            }, 500);
+            
         break;
 
         case 'character3':
@@ -151,11 +202,18 @@ function startGame(e){
 
         case 'character4':
             console.log('character4')
+
             loader.launchSecondLoader()
-            appControl.setScene()
-            appControl.loadModulesChar4()
-            appControl.animateRender()
-            appControl.animate()
+            
+            setTimeout(function() {
+            
+                appControl.setScene()
+                appControl.loadModulesChar4()
+                appControl.animateRender()
+                appControl.animate()      
+            
+            }, 500);
+
         break;
         
         default: 
@@ -164,3 +222,5 @@ function startGame(e){
 
 
 }
+
+export{attribute}

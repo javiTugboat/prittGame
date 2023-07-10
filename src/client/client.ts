@@ -104,6 +104,21 @@ export function loadModulesChar1(){
     character.addCharacter();
     models.loadModel1();
 
+
+}
+
+export function loadModulesChar2(){
+
+    
+
+    background.createBackGround();
+
+    clouds.createClouds();
+    lights.createLights();
+    character.addCharacter();
+    models.loadModel2();
+
+
 }
 
 export function animateRender(){
