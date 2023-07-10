@@ -107,6 +107,23 @@ export function addCharacter(){
 
 }
 
+export function fly3(){
+  currentPos = characterGroup.position.y;
+ var flyPos = characterGroup.position.y + 0.52    // characterGroup.position.y += 0.8;
+
+ gsap.fromTo(characterGroup.position, { y: currentPos }, { y: flyPos, duration: 0.35, ease: 'back.out' });
+
+ animations.animationLoop3()
+
+//  animations.inflateParachute()
+ // models.tilt()  
+
+ gsap.to(characterScene.rotation, { duration: 0.4, z:-0.1, ease: "power2.out",onComplete:rotateBack });
+
+
+}
+
+
   function rotateBack(){
     gsap.to(characterScene.rotation, { duration: 1, z:0.2, ease: "power1.inOut" });
 

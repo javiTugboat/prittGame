@@ -124,7 +124,7 @@ export function loadModel1 (){
   export function loadModel3(){
 
 
-    loader.load( 'models/climber.glb', function (characterMesh) {
+    loader.load( 'models/kayak.glb', function (characterMesh) {
      
     
     
@@ -197,6 +197,7 @@ manager.onLoad = function(){
     break;
 
     case 'character3':
+      animations.addCLips3();
 
     break;
 

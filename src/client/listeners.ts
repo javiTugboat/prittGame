@@ -76,6 +76,7 @@ function move(e){
         break;
 
         case 'character3':
+            character.fly3();
 
         break;
 
@@ -197,7 +198,18 @@ function startGame(e){
         break;
 
         case 'character3':
-            console.log('character3')
+
+            loader.launchSecondLoader()
+            
+            setTimeout(function() {
+            
+                appControl.setScene()
+                appControl.loadModulesChar3()
+                appControl.animateRender()
+                appControl.animate()      
+            
+            }, 500);
+
         break;
 
         case 'character4':

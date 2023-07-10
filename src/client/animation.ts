@@ -7,6 +7,7 @@ import { fallAnimPlayed } from './character';
 var mixer,animUp,animDown,animLoop,actionUp,actionDown,actionLoop
 var trek,trekAction
 var climb,climbDown,climbAction,climbDownAction,climbUpPlaying = false
+var row,pala,rowAction,palaAction,palaMixer
 var mixerDown,animUpPlaying = false
 var parachute1Target = {number: 0},parachute2Target= {number: 0}, parachute1Morph,parachute2Morph
 
@@ -78,6 +79,24 @@ export function addClips2(){
 
 }
 
+export function addCLips3(){
+    console.log("CHARVAR",characterVar)
+    row  = characterVar.animations[1]
+    pala = characterVar.animations[0]
+    mixer = new THREE.AnimationMixer(characterVar.scene)
+    palaMixer = new THREE.AnimationMixer(characterVar.scene.children[0])
+    rowAction = mixer.clipAction(row)
+    rowAction.setLoop(THREE.LoopOnce,0)
+    palaAction = palaMixer.clipAction(pala)
+    palaAction.setLoop(THREE.LoopOnce,0)
+    palaAction.clampWhenFinished = true;
+    rowAction.clampWhenFinished = true;
+    animateMixer3()
+    animatePalaMixer()
+    mixer.timeScale = 0.6
+
+}
+
 function onFinish(){
     console.log("finish")
 
@@ -130,6 +149,23 @@ function animateMixer2(){
 
 }
 
+function animateMixer3(){
+
+    var deltaSeconds = 0.07;
+    requestAnimationFrame(animateMixer3)
+    mixer.update(deltaSeconds)
+
+}
+
+function animatePalaMixer(){
+
+    var deltaSeconds = 0.07;
+    requestAnimationFrame(animatePalaMixer)
+    mixer.update(deltaSeconds)
+
+}
+
+
 export function animationUp(){
 
     // actionDown.play()
@@ -176,6 +212,20 @@ export function animationLoop1(){
 
 
     
+
+
+}
+
+export function animationLoop3(){
+
+
+    
+    rowAction.reset()
+    rowAction.play() 
+    palaAction.reset()
+    palaAction.play() 
+
+
 
 
 }
