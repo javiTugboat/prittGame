@@ -5,6 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as animations from './animation'
 import gsap from "gsap";
 import * as envmap from './envmap'
+import * as loaders from './loader'
 
 const manager = new THREE.LoadingManager();
 
@@ -48,6 +49,42 @@ loader.load( 'models/parapente.glb', function (characterMesh) {
 }
 
 
+export function loadModel1 (){
+
+
+  loader.load( 'models/parapente.glb', function (characterMesh) {
+   
+  
+  
+          characterVar = characterMesh;
+  
+        var model = characterVar.scene;
+            model.traverse((o) => {
+              if(o.isMesh) o.geometry.computeVertexNormals()
+              //  if (o.isMesh) o.material = characterinMaterial;
+  
+          
+        });
+      characterScene = characterVar.scenes[0];
+      characterScene.position.set (-2,0.5,2 );
+  
+      //////CHARACTER ROTATION
+  
+      console.log("characterROTATION",characterScene)
+  
+      characterScene.rotation.set (0,1,0.1);
+      characterScene.scale.set (1.15,1.15,1.15);
+      envmap.addEnvMaps();
+  
+      
+  
+    })
+  
+  
+  
+  }
+
+
 export function tilt(){
 
   currentYRot = characterScene.rotation.y
@@ -74,7 +111,7 @@ manager.onLoad = function(){
     
   characterGroup.add(characterScene)
   animations.addClips();
-
+  loaders.removeSecondLoader();
 
 }
 

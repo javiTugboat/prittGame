@@ -13,69 +13,100 @@ import * as collisions from './collisions'
 import * as score from './score'
 import * as animations from './animation'
 import * as loader from './loader'
+import gsap from "gsap";
+
 // import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 // import { SMAAPass } from 'three/examples/jsm/postprocessing/SMAAPass';
 const canvasDiv = document.getElementById("canvasDiv");
-
-const scene = new THREE.Scene();
-var scenery  = scene;
+var camera,scenery,look,renderer,pmremGenerator,controls
 var gameStarted = false,gameEnded = false,mainAnim,renderAnim;
 
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set (0, 0, 20);
-var look = new THREE.Vector3 (0,0,0);
-camera.lookAt(look);
 
-const renderer = new THREE.WebGLRenderer( {antialias: true})
-renderer.setSize(window.innerWidth, window.innerHeight)
+export function setScene(){
 
-///////ENVMAP STUFF
-const pmremGenerator = new THREE.PMREMGenerator( renderer );
-pmremGenerator.compileEquirectangularShader();
+    const scene = new THREE.Scene();
+    scenery  = scene;
 
+    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set (0, 0, 20);
+    look = new THREE.Vector3 (0,0,0);
+    camera.lookAt(look);
 
-
-renderer.toneMapping = THREE.LinearToneMapping;
-renderer.toneMappingExposure = 1;
-
-// const composer = new THREE.EffectComposer(renderer);
-// const smaaPass = new THREE.SMAAPass();
-// composer.addPass(smaaPass);
-
-
-// document.body.appendChild(renderer.domElement)
-canvasDiv.appendChild(renderer.domElement)
-
-const controls = new OrbitControls(camera, renderer.domElement)
-
-
-
-
-window.addEventListener('resize', onWindowResize, false)
-function onWindowResize() {
-    styles.checkScreenSize();
-    camera.aspect = window.innerWidth / window.innerHeight
-    camera.updateProjectionMatrix()
+    renderer = new THREE.WebGLRenderer( {antialias: true})
     renderer.setSize(window.innerWidth, window.innerHeight)
-    render()
+
+    ///////ENVMAP STUFF
+    pmremGenerator = new THREE.PMREMGenerator( renderer );
+    pmremGenerator.compileEquirectangularShader();
+
+
+
+    renderer.toneMapping = THREE.LinearToneMapping;
+    renderer.toneMappingExposure = 1;
+
+    // const composer = new THREE.EffectComposer(renderer);
+    // const smaaPass = new THREE.SMAAPass();
+    // composer.addPass(smaaPass);
+
+
+    // document.body.appendChild(renderer.domElement)
+    canvasDiv.appendChild(renderer.domElement)
+
+    controls = new OrbitControls(camera, renderer.domElement)
+
+
+
+
+    window.addEventListener('resize', onWindowResize, false)
+    function onWindowResize() {
+        styles.checkScreenSize();
+        camera.aspect = window.innerWidth / window.innerHeight
+        camera.updateProjectionMatrix()
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        render()
+    }
+
+}
+
+export function launchMenu(){
+
+
+    styles.addStyles();
+    styles.checkScreenSize()
+    styles.lowerCurtain()
+    listeners.addListeners();
+
 }
 
 //A D D    M O D U L E S   H E R E
-loader.launchLoader();
 
-styles.addStyles();
-styles.checkScreenSize()
+export function loadModulesChar4(){
 
-background.createBackGround();
-listeners.addListeners();
+    
 
-clouds.createClouds();
-lights.createLights();
-character.addCharacter();
-models.loadModel();
+    background.createBackGround();
 
+    clouds.createClouds();
+    lights.createLights();
+    character.addCharacter();
+    models.loadModel();
 
-function animateRender(){
+}
+
+export function loadModulesChar1(){
+
+    
+
+    background.createBackGround();
+
+    clouds.createClouds();
+    lights.createLights();
+    character.addCharacter();
+    models.loadModel1();
+
+}
+
+export function animateRender(){
 
         renderAnim = requestAnimationFrame( animateRender );
         render()
@@ -105,7 +136,7 @@ export function animate() {
 }
 
 function render() {
-    renderer.render(scene, camera)
+    renderer.render(scenery, camera)
 }
 
 export function gameHasStarted(){
@@ -131,6 +162,11 @@ export function endTheGame(){
 
 }
 
-animate()
-animateRender()
+loader.launchLoader();
+
+// setScene()
+// animate()
+// animateRender()
+
+
 export{scenery,gameEnded,gameStarted,pmremGenerator}

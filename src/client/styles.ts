@@ -1,3 +1,4 @@
+import gsap from "gsap";
 
 const btn = document.getElementById("btn");
 const buttonTextOne = document.getElementById("buttonTextOne");
@@ -7,6 +8,8 @@ const rightBorder= document.getElementById("rightBorder");
 
 const restartDiv= document.getElementById("restartDiv");
 const startDiv= document.getElementById("startDiv");
+const curtain= document.getElementById("curtain");
+
 const scoreText= document.getElementById( 'score' );
 const scoreHolder= document.getElementById( 'scoreHolder' );
 const playButton= document.getElementById( 'playButton' );
@@ -18,9 +21,16 @@ var x = window.matchMedia("(min-width: 1024px)")
 
 const prittBar= document.getElementById("prittBar");
 const prittLogo = document.getElementById("prittLogo");
+
+const natureLogo = document.getElementById('natureLogo');
+
 // import fontFile from '/fonts/Futura-Condensed-Extra-Bold.otf';
 export function addStyles(){
 // btn.style.backgroundColor = "blue"
+
+gsap.set(natureLogo,  {scale:0.6});
+
+
 btn.style.position = "absolute"
 btn.style.top = "0%"
 btn.style.left = "0%"
@@ -70,12 +80,12 @@ startDiv.style.flexDirection = "column"
 startDiv.style.justifyContent = "space-evenly"
 startDiv.style.alignItems = "center"
 startDiv.style.position = "absolute"
-startDiv.style.height = "73px"
-startDiv.style.width = "164px"
+startDiv.style.height = "560px"
+startDiv.style.width = "214px"
 startDiv.style.left = "50%"
 startDiv.style.top = "50%"
 startDiv.style.transform = "translate(-50%,-50%)"
-startDiv.style.backgroundColor= "#e00e20"
+// startDiv.style.backgroundColor= "#e00e20"
 startDiv.style.borderRadius= "10px"
 
 
@@ -84,22 +94,22 @@ scoreText.style.color = 'white'
 scoreText.style.fontSize = '25px'
 scoreText.style.marginRight = '10px'
 
-playButtonOne.style.fontFamily = "FuturaMedium"
-playButton.style.fontFamily = "FuturaMedium"
+// playButtonOne.style.fontFamily = "FuturaMedium"
+// playButton.style.fontFamily = "FuturaMedium"
 
 scoreText.style.fontFamily = "FuturaExtra"
 scoreTitle.style.fontFamily = "FuturaMedium"
 bestScore.style.fontFamily = "FuturaExtra"
 bestScore.style.lineHeight = "1"
 
-playButtonOne.style.display = "flex"
-playButtonOne.style.flexWrap = "wrap"
-playButtonOne.style.justifyContent = "center"
-playButtonOne.style.alignItems = "center"
-playButtonOne.style.width = "80%"
-playButtonOne.style.backgroundColor= "white"
-playButtonOne.style.color= "#e00e20"
-playButtonOne.style.borderRadius= "4px"
+// playButtonOne.style.display = "flex"
+// playButtonOne.style.flexWrap = "wrap"
+// playButtonOne.style.justifyContent = "center"
+// playButtonOne.style.alignItems = "center"
+// playButtonOne.style.width = "80%"
+// playButtonOne.style.backgroundColor= "white"
+// playButtonOne.style.color= "#e00e20"
+// playButtonOne.style.borderRadius= "4px"
 
 scoreHolder.style.display = "flex"
 scoreHolder.style.flexWrap = "wrap"
@@ -165,5 +175,18 @@ export function checkScreenSize(){
 
 }
 
+export function lowerCurtain(){
+
+    gsap.to(curtain,  {delay:0.5, autoAlpha:0, duration: 0.25, ease: 'power1.out',onStart:animLogo });
+
+
+}
+
+export function animLogo(){
+
+    gsap.to(natureLogo,  {delay:0, scale:1, duration: 0.45, ease: 'back.out' });
+
+
+}
 
   

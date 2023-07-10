@@ -38,9 +38,10 @@
         <div id = "canvasDiv" class = "block"></div>
 
         <div id = "startDiv" class = "startDiv">
-    
-            <div id  = "playButtonOne" class="mediumText button">
-            <div id ="buttonTextOne"class="mediumText buttonText">Tap to Start</div>
+            <img id = "startGif" class=" header" src ="./img/start_Trekking.gif">
+
+            <!-- <div id  = "playButtonOne" class="mediumText button">
+            <div id ="buttonTextOne"class="mediumText buttonText">Tap to Start</div> -->
               
             </div>
           </div>
@@ -73,7 +74,7 @@
 
                 <img id = "prittLogoBig" class="center" src ="./img/prittLogoBig.png">
             </div>
-            <div id = "characters">
+            <div id = "characters" >
 
                  <img id = "character1" class= "charButtons" src ="./img/character1.png">
                 <img id = "character2" class= "charButtons" src ="./img/character2.png">
@@ -82,8 +83,47 @@
 
             </div>
 
+            <div id = "enterCodeScreen" >
+
+                <img id = "codeScreen1" class= "block codeScreens center" src ="./img/codeScreen_character1.png">
+                <img id = "codeScreen2" class= "block codeScreens center" src ="./img/codeScreen_character2.png">
+                <img id = "codeScreen3" class= "block codeScreens center" src ="./img/codeScreen_character3.png">
+                <img id = "codeScreen3" class= "block codeScreens center" src ="./img/codeScreen_character4.png">    
+                <input type="text" id="codeInput">
+                <div id ="closeButt"></div>
+                <div id ="applyButt"></div>
+
+            </div>
+
 
         </div>
+
+        <div id = "menu1" class = "menus">
+
+            <img id = "menuBg1" class="menuBg block" src ="./img/bg1.jpg">
+
+
+            <div id = "prittLogoMenu" class = "prittHeader">
+
+                <img id = "header" class=" header" src ="./img/header.png">
+
+                <img id = "prittLogoBig" class="center" src ="./img/prittLogoBig.png">
+            </div>
+            <div id = "natureLogo">
+                <img id = "natureImg" class= "flexy" src ="./img/natureLogo.png">
+
+            </div>
+
+            <div id = "buttons">
+
+                <img id = "button1" class= "screen1Buttons" src ="./img/button_miniGame.png">
+                <img id = "button2" class= "screen1Buttons" src ="./img/button_filter.png">
+               
+            </div>
+
+
+        </div>
+
         
         <div id = "leftBorder"></div>
         <div id = "rightBorder"></div>
@@ -97,6 +137,8 @@
                
               </div>
         </div>
+
+        <div id = "curtain" style = "background-color:#e00e20;width:100%;height:100%;left:0%;top:0%;position:absolute;"></div>
 
         <script type="module" src="bundle.js"></script>
 
