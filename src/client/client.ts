@@ -99,7 +99,7 @@ export function loadModulesChar1(){
 
     background.createBackGround();
 
-    clouds.createClouds();
+    clouds.createTrekkingkRocks();
     lights.createLights();
     character.addCharacter();
     models.loadModel1();
@@ -127,7 +127,7 @@ export function loadModulesChar3(){
 
     background.createBackGround();
 
-    clouds.createClouds();
+    clouds.createKayakRocks();
     lights.createLights();
     character.addCharacter();
     models.loadModel3();

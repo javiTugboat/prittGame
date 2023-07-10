@@ -82,6 +82,114 @@ export function createClouds(){
 
 }
 
+export function createKayakRocks(){
+
+
+    cloudUpWidth = 6.5;
+    cloudUpHeight = 3.5;
+    cloudGroupXPos = cloudUpWidth * 2;
+
+    cloudUpTexture= new THREE.TextureLoader().load('img/kayakRocks.png');
+    cloudUpMaterial = new THREE.MeshBasicMaterial ({map: cloudUpTexture,transparent:true});
+    cloudUpMesh = new THREE.BoxGeometry (cloudUpWidth,  cloudUpHeight, 0);
+    
+    cloudUp = new THREE.Mesh(cloudUpMesh, cloudUpMaterial);
+    cloudUp.rotation.x = 0.2;
+    cloudDownYPosition = -3;
+    createBoundingBoxes();
+
+    cloudDown = cloudUp.clone();
+    extraCloudUp = cloudUp.clone();
+
+    cloudDown.position.y = cloudDownYPosition;
+    extraCloudUp.position.y = 3;
+
+    cloudGroupTop.add(cloudUp,cloudDown,extraCloudUp);
+
+    console.log(cloudGroupTop)
+
+     cloudGroupBottom = cloudGroupTop.clone();
+
+    cloudGroupTop.position.set( cloudGroupXPos,7,0)
+    cloudGroupBottom.position.set(cloudGroupXPos,-3,0)
+
+    allCloudsGroup.add(cloudGroupTop,cloudGroupBottom);
+
+    scenery.add(allCloudsGroup);
+
+    extraCloudDown = cloudGroupBottom.children[2];
+
+    // boundBoxMeshBottom = cloudGroupBottom.children[3];
+    
+    topCloudDown = cloudGroupBottom.children[0];
+    middleCloudDown = cloudGroupBottom.children[1];
+
+    // boundBoxMeshBottom.position.y = -3;
+    extraCloudDown.position.y = -6;
+    
+    allCloudsGroup.position.z = 1.5;
+
+    console.log(allCloudsGroup)
+    cloudArray = [cloudUp,cloudDown,extraCloudUp,topCloudDown,middleCloudDown,extraCloudDown]
+    console.log("cloudArray",cloudArray)
+    resizeClouds();
+
+}
+
+export function createTrekkingkRocks(){
+
+
+    cloudUpWidth = 6.5;
+    cloudUpHeight = 3.5;
+    cloudGroupXPos = cloudUpWidth * 2;
+
+    cloudUpTexture= new THREE.TextureLoader().load('img/trekkingRocks.png');
+    cloudUpMaterial = new THREE.MeshBasicMaterial ({map: cloudUpTexture,transparent:true});
+    cloudUpMesh = new THREE.BoxGeometry (cloudUpWidth,  cloudUpHeight, 0);
+    
+    cloudUp = new THREE.Mesh(cloudUpMesh, cloudUpMaterial);
+    cloudUp.rotation.x = 0.2;
+    cloudDownYPosition = -3;
+    createBoundingBoxes();
+
+    cloudDown = cloudUp.clone();
+    extraCloudUp = cloudUp.clone();
+
+    cloudDown.position.y = cloudDownYPosition;
+    extraCloudUp.position.y = 3;
+
+    cloudGroupTop.add(cloudUp,cloudDown,extraCloudUp);
+
+    console.log(cloudGroupTop)
+
+     cloudGroupBottom = cloudGroupTop.clone();
+
+    cloudGroupTop.position.set( cloudGroupXPos,7,0)
+    cloudGroupBottom.position.set(cloudGroupXPos,-3,0)
+
+    allCloudsGroup.add(cloudGroupTop,cloudGroupBottom);
+
+    scenery.add(allCloudsGroup);
+
+    extraCloudDown = cloudGroupBottom.children[2];
+
+    // boundBoxMeshBottom = cloudGroupBottom.children[3];
+    
+    topCloudDown = cloudGroupBottom.children[0];
+    middleCloudDown = cloudGroupBottom.children[1];
+
+    // boundBoxMeshBottom.position.y = -3;
+    extraCloudDown.position.y = -6;
+    
+    allCloudsGroup.position.z = 1.5;
+
+    console.log(allCloudsGroup)
+    cloudArray = [cloudUp,cloudDown,extraCloudUp,topCloudDown,middleCloudDown,extraCloudDown]
+    console.log("cloudArray",cloudArray)
+    resizeClouds();
+
+}
+
 function resizeClouds(){
     // var randomScale = 0.7;
     var n = 2;

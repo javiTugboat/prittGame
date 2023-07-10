@@ -6,6 +6,7 @@ var time = 0,background,staticBg,backgroundWidth
 var texture = new THREE.TextureLoader().load('img/width_fondo_bar2.png')
 var texture1 = new THREE.TextureLoader().load('img/width_fondo_bar1.png')
 var texture2 = new THREE.TextureLoader().load('img/width_fondo_bar.png')
+var texture3 = new THREE.TextureLoader().load('img/width_fondo_bar3.png')
 
 var textureStatic = new THREE.TextureLoader().load('img/staticBg.jpg')
 var bgTimeIncrement = 0.0045
@@ -30,6 +31,7 @@ export function createBackGround () {
     texture.wrapS = THREE.RepeatWrapping;
     texture1.wrapS = THREE.RepeatWrapping;
     texture2.wrapS = THREE.RepeatWrapping;
+    texture3.wrapS = THREE.RepeatWrapping;
 
     setBg()
     staticBg.material = new THREE.MeshBasicMaterial ({map: textureStatic});
@@ -64,7 +66,9 @@ export function createBackGround () {
       break;
   
       case 'character3':
-  
+
+        background.material = new THREE.MeshBasicMaterial ({map: texture3,transparent:true});
+
       break;
   
       case 'character4':
@@ -94,6 +98,9 @@ export function createBackGround () {
       break;
   
       case 'character3':
+
+      texture3.offset.x = time*bgTimeIncrement;
+
   
       break;
   

@@ -10,6 +10,10 @@ const button = document.getElementById('btn');
 
 const restartDiv = document.getElementById('restartDiv');
 const startDiv = document.getElementById('startDiv');
+
+
+const startGif = <HTMLInputElement>document.getElementById('startGif');
+
 const character1 = document.getElementById('character1');
 const menu2 = document.getElementById('menu2' );
 const menu1 = document.getElementById('menu1' );
@@ -125,20 +129,31 @@ function codeClicks(e){
         case 'character1':
 
             codeScreen1.style.display = "block"
+            /*q: how do i change the image source of a gif with javascript?   
+            a:              
+
+            */
+
+
+            
+            startGif.src = "assets/start_Trekking.gif"
         break;
 
         case 'character2':
             codeScreen2.style.display = "block"
+            startGif.src = "assets/start_Climber.gif"
 
         break;
 
         case 'character3':
             codeScreen2.style.display = "block"
+            startGif.src = "assets/start_Kayak.gif"
 
         break;
 
         case 'character4':
             codeScreen2.style.display = "block"
+            startGif.src = "assets/start_Parachute.gif"
 
         break;
         
