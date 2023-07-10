@@ -14,7 +14,7 @@ const scoreText= document.getElementById( 'score' );
 const scoreHolder= document.getElementById( 'scoreHolder' );
 const playButton= document.getElementById( 'playButton' );
 const buttonText= document.getElementById( 'playButton' );
-const scoreTitle= document.getElementById( 'scoreTitle' );
+// const scoreTitle= document.getElementById( 'scoreTitle' );
 const bestScore= document.getElementById( 'bestScore' );
 
 var x = window.matchMedia("(min-width: 1024px)")
@@ -38,21 +38,7 @@ btn.style.width = "100%"
 btn.style.height = "100%"
 // btn.style.display = "none"
 
-restartDiv.style.display = "none"
-restartDiv.style.flexWrap = "wrap"
-restartDiv.style.flexDirection = "column"
-restartDiv.style.justifyContent = "space-evenly"
-restartDiv.style.alignItems = "center"
-restartDiv.style.position = "absolute"
-restartDiv.style.height = "188px"
-restartDiv.style.width = "228px"
-restartDiv.style.left = "50%"
-restartDiv.style.top = "50%"
-restartDiv.style.transform = "translate(-50%,-50%)"
-restartDiv.style.backgroundColor= "#e00e20"
-restartDiv.style.borderRadius= "10px"
-restartDiv.style.fontFamily = "'Nunito', sans-serif"
-restartDiv.style.color = "white"
+
 
 
 prittBar.style.display = "flex"
@@ -98,7 +84,7 @@ scoreText.style.marginRight = '10px'
 // playButton.style.fontFamily = "FuturaMedium"
 
 scoreText.style.fontFamily = "FuturaExtra"
-scoreTitle.style.fontFamily = "FuturaMedium"
+// scoreTitle.style.fontFamily = "FuturaMedium"
 bestScore.style.fontFamily = "FuturaExtra"
 bestScore.style.lineHeight = "1"
 
@@ -111,24 +97,19 @@ bestScore.style.lineHeight = "1"
 // playButtonOne.style.color= "#e00e20"
 // playButtonOne.style.borderRadius= "4px"
 
-scoreHolder.style.display = "flex"
-scoreHolder.style.flexWrap = "wrap"
-scoreHolder.style.alignItems = "center"
-scoreHolder.style.gap = "10px"
-scoreHolder.style.userSelect = "none"
-scoreHolder.style.pointerEvents= "none"
 
 
-playButton.style.display = "flex"
-playButton.style.flexWrap = "wrap"
-playButton.style.justifyContent = "center"
-playButton.style.alignItems = "center"
-playButton.style.width = "45%"
-playButton.style.backgroundColor= "white"
-playButton.style.color= "#e00e20"
-playButton.style.borderRadius= "4px"
-playButton.style.userSelect = "none"
-playButton.style.pointerEvents= "none"
+
+// playButton.style.display = "flex"
+// playButton.style.flexWrap = "wrap"
+// playButton.style.justifyContent = "center"
+// playButton.style.alignItems = "center"
+// playButton.style.width = "45%"
+// playButton.style.backgroundColor= "white"
+// playButton.style.color= "#e00e20"
+// playButton.style.borderRadius= "4px"
+// playButton.style.userSelect = "none"
+// playButton.style.pointerEvents= "none"
 
 rightBorder.style.position = "absolute"
 rightBorder.style.right = "0%"

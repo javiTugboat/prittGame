@@ -17,6 +17,7 @@ const startGif = <HTMLInputElement>document.getElementById('startGif');
 const character1 = document.getElementById('character1');
 const menu2 = document.getElementById('menu2' );
 const menu1 = document.getElementById('menu1' );
+const characters = document.getElementById('characters' );
 
 const button1 = document.getElementById('button1');
 var attribute;
@@ -118,13 +119,16 @@ function chooseMiniGame(e){
 }
 
 function codeClicks(e){
+    gsap.to(characters,  { autoAlpha:0, duration: 0.35, ease: 'back.out',scale:0.95 });
 
-    gsap.to(enterCodeScreen,  { autoAlpha:1, duration: 0.35, ease: 'back.out',scale:1 });
+
+    gsap.to(enterCodeScreen,  {delay:0.1, autoAlpha:1, duration: 0.35, ease: 'back.out',scale:1 });
 
     attribute = this.getAttribute("id");
     console.log("whichCharClicked?", attribute)
 
     switch (attribute){
+
 
         case 'character1':
 
@@ -136,24 +140,24 @@ function codeClicks(e){
 
 
             
-            startGif.src = "assets/start_Trekking.gif"
+            startGif.src = "img/start_Trekking.gif"
         break;
 
         case 'character2':
             codeScreen2.style.display = "block"
-            startGif.src = "assets/start_Climber.gif"
+            startGif.src = "img/start_Climber.gif"
 
         break;
 
         case 'character3':
             codeScreen2.style.display = "block"
-            startGif.src = "assets/start_Kayak.gif"
+            startGif.src = "img/start_Kayak.gif"
 
         break;
 
         case 'character4':
             codeScreen2.style.display = "block"
-            startGif.src = "assets/start_Parachute.gif"
+            startGif.src = "img/start_Parachute.gif"
 
         break;
         
@@ -168,6 +172,7 @@ function closeCodeScreen(e){
 
     gsap.to(enterCodeScreen,  { autoAlpha:0, duration: 0.35, ease: 'back.inOut',scale:0.95 });
 
+    gsap.to(characters,  { autoAlpha:1, duration: 0.35, ease: 'back.out',scale:1 });
 
 
 }
