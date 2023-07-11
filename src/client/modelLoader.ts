@@ -145,7 +145,7 @@ export function loadModel1 (){
         console.log("characterROTATION",characterScene)
     
         characterScene.rotation.set (0,1,0.1);
-        characterScene.scale.set (1.15,1.15,1.15);
+        characterScene.scale.set (1.35,1.35,1.35);
         envmap.addEnvMaps();
     
         

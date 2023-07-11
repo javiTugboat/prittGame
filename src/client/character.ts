@@ -118,7 +118,7 @@ export function fly3(){
 //  animations.inflateParachute()
  // models.tilt()  
 
- gsap.to(characterScene.rotation, { duration: 0.4, z:-0.1, ease: "power2.out",onComplete:rotateBack });
+ gsap.to(characterScene.rotation, { duration: 0.4, y:2.2, x:0.7, ease: "power2.out",onComplete:rotateBack3,overwrite:true });
 
 
 }
@@ -131,6 +131,11 @@ export function fly3(){
 
   function rotateBack1(){
     gsap.to(characterScene.rotation, { duration: 0.4, y:0.5,x:0.5, ease: "power1.inOut",overwrite:true });
+
+  }
+
+  function rotateBack3(){
+    gsap.to(characterScene.rotation, { duration: 0.9, y:0.5,x:0.5, ease: "power1.inOut",overwrite:true });
 
   }
 
