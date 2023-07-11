@@ -163,6 +163,14 @@ export function lowerCurtain(){
 
 }
 
+export function raiseCurtain(){
+
+    gsap.to(curtain,  {delay:0, autoAlpha:1, duration: 0.25, ease: 'power1.out',onStart:animLogo });
+
+
+}
+
+
 export function animLogo(){
 
     gsap.to(natureLogo,  {delay:0, scale:1, duration: 0.45, ease: 'back.out' });

@@ -86,7 +86,7 @@ export function addCharacter(){
   //  animations.inflateParachute()
    // models.tilt()  
 
-   gsap.to(characterScene.rotation, { duration: 0.4, z:-0.1, ease: "power2.out",onComplete:rotateBack });
+   gsap.to(characterScene.rotation, { duration: 0.4, y:2, x:0.1, ease: "power2.out",onComplete:rotateBack1,overwrite:true });
 
 
  }
@@ -95,7 +95,7 @@ export function addCharacter(){
   currentPos = characterGroup.position.y;
  var flyPos = characterGroup.position.y + 0.52    // characterGroup.position.y += 0.8;
 
- gsap.fromTo(characterGroup.position, { y: currentPos }, { y: flyPos, duration: 0.35, ease: 'back.out' });
+ gsap.fromTo(characterGroup.position, { y: currentPos }, { y: flyPos, duration: 0.35, ease: 'back.out',overwrite:true });
 
  animations.animationLoop2()
 
@@ -125,7 +125,12 @@ export function fly3(){
 
 
   function rotateBack(){
-    gsap.to(characterScene.rotation, { duration: 1, z:0.2, ease: "power1.inOut" });
+    gsap.to(characterScene.rotation, { duration: 1, z:0.2, ease: "power1.inOut",overwrite:true });
+
+  }
+
+  function rotateBack1(){
+    gsap.to(characterScene.rotation, { duration: 0.4, y:0.5,x:0.5, ease: "power1.inOut",overwrite:true });
 
   }
 

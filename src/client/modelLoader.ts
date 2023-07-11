@@ -74,7 +74,7 @@ export function loadModel1 (){
       console.log("characterROTATION",characterScene)
   
       characterScene.rotation.set (0,1,0.1);
-      characterScene.scale.set (1.15,1.15,1.15);
+      characterScene.scale.set (1.35,1.35,1.35);
       envmap.addEnvMaps();
   
       
@@ -108,8 +108,8 @@ export function loadModel1 (){
     
         console.log("characterROTATION",characterScene)
     
-        characterScene.rotation.set (0,1,0.1);
-        characterScene.scale.set (1.15,1.15,1.15);
+        characterScene.rotation.set (0,-3.5,0.1);
+        characterScene.scale.set (1.35,1.35,1.35);
         envmap.addEnvMaps();
     
         
@@ -156,7 +156,33 @@ export function loadModel1 (){
     
   } 
 
+  export function swapModel(){
 
+   
+  
+    switch (attribute){
+  
+        case 'character1':
+    
+        break;
+    
+        case 'character2':
+    
+        break;
+    
+        case 'character3':
+    
+        break;
+    
+        case 'character4':
+
+        break;
+        
+        default: 
+
+     }
+
+  }
 export function tilt(){
 
   currentYRot = characterScene.rotation.y

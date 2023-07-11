@@ -20,10 +20,11 @@ import gsap from "gsap";
 const canvasDiv = document.getElementById("canvasDiv");
 var camera,scenery,look,renderer,pmremGenerator,controls
 var gameStarted = false,gameEnded = false,mainAnim,renderAnim;
+var sceneIsSetup =false
 
 
 export function setScene(){
-
+    sceneIsSetup = true;
     const scene = new THREE.Scene();
     scenery  = scene;
 
@@ -34,15 +35,19 @@ export function setScene(){
 
     renderer = new THREE.WebGLRenderer( {antialias: true})
     renderer.setSize(window.innerWidth, window.innerHeight)
-
+    renderer.encoding = THREE.SRGBColorSpace
     ///////ENVMAP STUFF
     pmremGenerator = new THREE.PMREMGenerator( renderer );
     pmremGenerator.compileEquirectangularShader();
+    //q: how do I add black fog to the scene?
+    // scenery.fog = new THREE.Fog(0x000000, 0.1, 10);
+    console.log("SCENE" , scenery)
+THREE.ColorManagement.enabled = true;
 
 
 
-    renderer.toneMapping = THREE.LinearToneMapping;
-    renderer.toneMappingExposure = 1;
+    // renderer.toneMapping = THREE.LinearToneMapping;
+    // renderer.toneMappingExposure = 0.1;
 
     // const composer = new THREE.EffectComposer(renderer);
     // const smaaPass = new THREE.SMAAPass();
@@ -58,14 +63,16 @@ export function setScene(){
 
 
     window.addEventListener('resize', onWindowResize, false)
-    function onWindowResize() {
-        styles.checkScreenSize();
-        camera.aspect = window.innerWidth / window.innerHeight
-        camera.updateProjectionMatrix()
-        renderer.setSize(window.innerWidth, window.innerHeight)
-        render()
-    }
 
+
+}
+
+function onWindowResize() {
+    styles.checkScreenSize();
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    render()
 }
 
 export function launchMenu(){
@@ -109,15 +116,24 @@ export function loadModulesChar1(){
 
 export function loadModulesChar2(){
 
+    // if(!sceneIsSetup){
+
+        background.createBackGround();
+
+        clouds.createClouds();
+        lights.createLights();
+        character.addCharacter();
+        models.loadModel2();
     
 
-    background.createBackGround();
 
-    clouds.createClouds();
-    lights.createLights();
-    character.addCharacter();
-    models.loadModel2();
+    // }else{
 
+    //     models.swapModel();
+
+    // }
+
+    
 
 }
 
@@ -197,6 +213,19 @@ loader.launchLoader();
 // setScene()
 // animate()
 // animateRender()
+
+export function deleteScene(){
+
+    scenery = null;
+    renderer.dispose();
+    window.removeEventListener('resize', onWindowResize);
+    cancelAnimationFrame(mainAnim);
+    cancelAnimationFrame(renderAnim);
+    canvasDiv.removeChild(renderer.domElement)
+    // camera.dispose();
+
+}
+
 
 
 export{scenery,gameEnded,gameStarted,pmremGenerator}

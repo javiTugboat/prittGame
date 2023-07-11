@@ -4,7 +4,7 @@ import { scenery } from './client'
 var spotLight;
 
 export function createLights(){
-var ambientLight = new THREE.AmbientLight(0xccddee, 1);
+var ambientLight = new THREE.AmbientLight(0xccddee, 0.6);
 // La añadimos a la escena
 scenery.add (ambientLight);
 

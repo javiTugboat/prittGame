@@ -3,12 +3,18 @@ import * as appControl from './client'
 import * as collisions from './collisions'
 import * as listeners from './listeners'
 import * as loader from './loader'
+import * as styles from './styles'
+
+import * as recycler from './recycler'
 
 import gsap from "gsap"
 
 const button = document.getElementById('btn');
 
 const restartDiv = document.getElementById('restartDiv');
+const playAgainButt = document.getElementById('playAgain');
+const toMenuButt = document.getElementById('toMenu');
+
 const startDiv = document.getElementById('startDiv');
 
 
@@ -40,7 +46,8 @@ export function addListeners(){
     button.addEventListener('click',move);
 
   
-    restartDiv.addEventListener('click',moveAgain);
+    playAgainButt.addEventListener('click',moveAgain);
+    // toMenuButt.addEventListener('click',backToMenu);
 
     // character1.addEventListener('click',startGame);
 
@@ -180,6 +187,7 @@ function closeCodeScreen(e){
 function startGame(e){
 
     gsap.to(menu2,  { autoAlpha:0, duration: 0.35, ease: 'power1.inOut' });
+    gsap.to(enterCodeScreen,  { autoAlpha:0, duration: 0.35, ease: 'back.inOut',scale:0.95 });
 
     switch (attribute){
 
@@ -252,6 +260,26 @@ function startGame(e){
 
     }
 
+
+}
+
+function backToMenu(e){
+
+    styles.raiseCurtain()
+
+    recycler.recycleWorld()
+    appControl.deleteScene()
+    setTimeout(function() {
+        gsap.to(menu2,  { autoAlpha:1, duration: 0.1, ease: 'power1.inOut',onComplete:
+        function(){styles.lowerCurtain()}
+
+    }); 
+
+    gsap.to(characters,  { autoAlpha:1, duration: 0.35, ease: 'back.out',scale:1 });
+    restartDiv.style.display = 'none';
+
+
+    }, 100);
 
 }
 

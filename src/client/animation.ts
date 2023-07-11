@@ -54,6 +54,7 @@ export function addClips1(){
     trekAction.clampWhenFinished = true;
     animateMixer1()
     mixer.timeScale = 1.5
+    mixer.addEventListener('finished', onFinish1 );
 
 
 }
@@ -64,8 +65,10 @@ export function addClips2(){
     climb = characterVar.animations[0]
     climbDown = characterVar.animations[1]
     mixer = new THREE.AnimationMixer(characterVar.scene)
+    mixerDown = new THREE.AnimationMixer(characterVar.scene)
+
     climbAction = mixer.clipAction(climb)
-    climbDownAction = mixer.clipAction(climbDown)
+    climbDownAction = mixerDown.clipAction(climbDown)
     climbAction.setLoop(THREE.LoopOnce,0)
     climbDownAction.setLoop(THREE.LoopOnce,0)
     climbAction.clampWhenFinished = true;
@@ -98,9 +101,13 @@ export function addCLips3(){
 }
 
 function onFinish(){
-    console.log("finish")
 
 animationDown();
+}
+
+function onFinish1(){
+
+animationDown1();
 }
 
 function onFinish2(){
@@ -135,7 +142,7 @@ function animateMixer(){
 
 function animateMixer1(){
 
-    var deltaSeconds = 0.07;
+    var deltaSeconds = 0.035;
     requestAnimationFrame(animateMixer1)
     mixer.update(deltaSeconds)
 
@@ -146,6 +153,8 @@ function animateMixer2(){
     var deltaSeconds = 0.07;
     requestAnimationFrame(animateMixer2)
     mixer.update(deltaSeconds)
+    var deltaSeconds2 = 0.04;
+    mixerDown.update(deltaSeconds2)
 
 }
 
@@ -176,6 +185,13 @@ export function animationDown(){
     actionDown.reset()
 
     actionDown.play()
+}
+
+export function animationDown1(){
+
+    trekAction.reset()
+    trekAction.play() 
+
 }
 
 export function animationDown2(){

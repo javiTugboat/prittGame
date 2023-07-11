@@ -7,15 +7,16 @@ var texture = new THREE.TextureLoader().load('img/width_fondo_bar2.png')
 var texture1 = new THREE.TextureLoader().load('img/width_fondo_bar1.png')
 var texture2 = new THREE.TextureLoader().load('img/width_fondo_bar.png')
 var texture3 = new THREE.TextureLoader().load('img/width_fondo_bar3.png')
-
 var textureStatic = new THREE.TextureLoader().load('img/staticBg.jpg')
 var bgTimeIncrement = 0.0045
 import { attribute } from './listeners'
 
+var texArray = [texture,texture1,texture2,texture3]
 
 export function createBackGround () {
     // Valor para mover el fondo
     // Una figura es un Mesh
+    
     background = new THREE.Mesh ();
     staticBg = new THREE.Mesh ();
     // Un Mesh se compone de geometría y material
@@ -32,6 +33,14 @@ export function createBackGround () {
     texture1.wrapS = THREE.RepeatWrapping;
     texture2.wrapS = THREE.RepeatWrapping;
     texture3.wrapS = THREE.RepeatWrapping;
+
+    texture.encoding = THREE.sRGBEncoding;
+
+    //q: create a for loop that iterates through texArray and sets the encoding to sRGBEncoding
+     for (var i = 0; i < texArray.length; i++) {
+
+      texArray[i].encoding = THREE.sRGBEncoding;
+     }
 
     setBg()
     staticBg.material = new THREE.MeshBasicMaterial ({map: textureStatic});
@@ -73,7 +82,7 @@ export function createBackGround () {
   
       case 'character4':
         background.material = new THREE.MeshBasicMaterial ({map: texture,transparent:true});
-
+        //q: what color is grey in hex? a: 
       break;
       
       default: 

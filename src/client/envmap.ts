@@ -25,6 +25,7 @@ export function addEnvMaps(){
 
           exrCubeRenderTarget = pmremGenerator.fromEquirectangular( texture );
           exrBackground = texture;
+          texture.encoding = THREE.LinearEncoding;
           console.log("ENVMAP",envMap)
         },
         (progress) => {
@@ -49,7 +50,6 @@ export function addEnvMaps(){
 
         if ( object.material ) materialSet.add( object.material );
         if ( object.material ) matArray.push( object.material );
- 
     } );
 
     setTimeout(function() {
@@ -59,8 +59,9 @@ export function addEnvMaps(){
 
             matArray[i].envMap = envMap
             matArray[i].metalness = 0.1
-            matArray[i].envMapIntensity = 1.3
+            matArray[i].envMapIntensity = 1
             matArray[i].needsUpdate = true
+            // matArray[i].map.encoding = THREE.sRGBEncoding;
 
         }
     
