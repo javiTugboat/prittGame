@@ -160,7 +160,7 @@ function animateMixer2(){
 
 function animateMixer3(){
 
-    var deltaSeconds = 0.07;
+    var deltaSeconds = 0.05;
     requestAnimationFrame(animateMixer3)
     mixer.update(deltaSeconds)
 

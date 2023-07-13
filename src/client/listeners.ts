@@ -4,6 +4,10 @@ import * as collisions from './collisions'
 import * as listeners from './listeners'
 import * as loader from './loader'
 import * as styles from './styles'
+import * as clouds from './clouds'
+import * as models from './modelLoader'
+import * as background from './background'
+import { scenery } from './client'
 
 import * as recycler from './recycler'
 
@@ -36,6 +40,7 @@ const codeScreen4 = document.getElementById('codeScreen4' );
 const closeButt = document.getElementById('closeButt' );
 const applyButt = document.getElementById('applyButt' );
 
+var gameSessionRunning = false;
 
 export function addListeners(){
     gsap.set(enterCodeScreen,  { autoAlpha:0,scale:0.95 });
@@ -47,19 +52,20 @@ export function addListeners(){
 
   
     playAgainButt.addEventListener('click',moveAgain);
-    // toMenuButt.addEventListener('click',backToMenu);
+    toMenuButt.addEventListener('click',backToMenu);
 
     // character1.addEventListener('click',startGame);
 
     button1.addEventListener('click',chooseMiniGame);
 
     for (var i = 0; i < elements.length; i++) {
-        console.log(elements)
         elements[i].addEventListener('click', codeClicks, false);
 
     }
 
     closeButt.addEventListener('click',closeCodeScreen);
+
+    //GAME STARTS HERE
     applyButt.addEventListener('click',startGame);
 
 }
@@ -132,7 +138,6 @@ function codeClicks(e){
     gsap.to(enterCodeScreen,  {delay:0.1, autoAlpha:1, duration: 0.35, ease: 'back.out',scale:1 });
 
     attribute = this.getAttribute("id");
-    console.log("whichCharClicked?", attribute)
 
     switch (attribute){
 
@@ -185,27 +190,32 @@ function closeCodeScreen(e){
 }
 
 function startGame(e){
-
+    console.log("ENTIRE SCENE",scenery)
+    gameSessionRunning = true;
     gsap.to(menu2,  { autoAlpha:0, duration: 0.35, ease: 'power1.inOut' });
     gsap.to(enterCodeScreen,  { autoAlpha:0, duration: 0.35, ease: 'back.inOut',scale:0.95 });
+
+    if(gameSessionRunning){
+        listeners.addListeners()
+    }
 
     switch (attribute){
 
         case 'character1':
-            
-            console.log('character1')
 
-            loader.launchSecondLoader()
-            
-            setTimeout(function() {
-            
-                appControl.setScene()
-                appControl.loadModulesChar1()
-                appControl.animateRender()
-                appControl.animate()      
-            
-            }, 500);
-           
+                console.log('character1')
+
+                loader.launchSecondLoader()
+                
+                setTimeout(function() {
+                    
+                    appControl.setScene()   
+                    appControl.loadModulesChar1()
+                    appControl.animateRender()
+                    appControl.animate()      
+                }, 500);
+
+      
 
         break;
 
@@ -230,8 +240,8 @@ function startGame(e){
             loader.launchSecondLoader()
             
             setTimeout(function() {
-            
                 appControl.setScene()
+
                 appControl.loadModulesChar3()
                 appControl.animateRender()
                 appControl.animate()      
@@ -264,10 +274,9 @@ function startGame(e){
 }
 
 function backToMenu(e){
+    // styles.raiseCurtain()
 
-    styles.raiseCurtain()
-
-    recycler.recycleWorld()
+    // recycler.recycleWorld()
     appControl.deleteScene()
     setTimeout(function() {
         gsap.to(menu2,  { autoAlpha:1, duration: 0.1, ease: 'power1.inOut',onComplete:
@@ -283,4 +292,4 @@ function backToMenu(e){
 
 }
 
-export{attribute}
+export{attribute,gameSessionRunning}

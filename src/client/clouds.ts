@@ -52,7 +52,6 @@ export function createClouds(){
 
     cloudGroupTop.add(cloudUp,cloudDown,extraCloudUp);
 
-    console.log(cloudGroupTop)
 
      cloudGroupBottom = cloudGroupTop.clone();
 
@@ -75,9 +74,7 @@ export function createClouds(){
     
     allCloudsGroup.position.z = 1.5;
 
-    console.log(allCloudsGroup)
     cloudArray = [cloudUp,cloudDown,extraCloudUp,topCloudDown,middleCloudDown,extraCloudDown]
-    console.log("cloudArray",cloudArray)
     resizeClouds();
 
 }
@@ -106,7 +103,6 @@ export function createKayakRocks(){
 
     cloudGroupTop.add(cloudUp,cloudDown,extraCloudUp);
 
-    console.log(cloudGroupTop)
 
      cloudGroupBottom = cloudGroupTop.clone();
 
@@ -114,6 +110,7 @@ export function createKayakRocks(){
     cloudGroupBottom.position.set(cloudGroupXPos,-3,0)
 
     allCloudsGroup.add(cloudGroupTop,cloudGroupBottom);
+    allCloudsGroup.name = "allCloudsGroup";
 
     scenery.add(allCloudsGroup);
 
@@ -129,9 +126,7 @@ export function createKayakRocks(){
     
     allCloudsGroup.position.z = 1.5;
 
-    console.log(allCloudsGroup)
     cloudArray = [cloudUp,cloudDown,extraCloudUp,topCloudDown,middleCloudDown,extraCloudDown]
-    console.log("cloudArray",cloudArray)
     resizeClouds();
 
 }
@@ -160,7 +155,6 @@ export function createTrekkingkRocks(){
 
     cloudGroupTop.add(cloudUp,cloudDown,extraCloudUp);
 
-    console.log(cloudGroupTop)
 
      cloudGroupBottom = cloudGroupTop.clone();
 
@@ -168,6 +162,9 @@ export function createTrekkingkRocks(){
     cloudGroupBottom.position.set(cloudGroupXPos,-3,0)
 
     allCloudsGroup.add(cloudGroupTop,cloudGroupBottom);
+    allCloudsGroup.name = "allTrekkingCloudsGroup";
+    cloudGroupBottom.name = "allTrekkingCloudsGroupBottom";
+    cloudGroupTop.name = "allTrekkingCloudsGroupTop";
 
     scenery.add(allCloudsGroup);
 
@@ -183,9 +180,7 @@ export function createTrekkingkRocks(){
     
     allCloudsGroup.position.z = 1.5;
 
-    console.log(allCloudsGroup)
     cloudArray = [cloudUp,cloudDown,extraCloudUp,topCloudDown,middleCloudDown,extraCloudDown]
-    console.log("cloudArray",cloudArray)
     resizeClouds();
 
 }
@@ -241,9 +236,7 @@ export function moveClouds(){
 
 export function addCloudSpeed(){
     cloudTopIncrement = cloudTopIncrement * 1.1;
-    console.log(cloudTopIncrement);
     cloudBottomIncrement = cloudBottomIncrement * 1.1;
-    console.log(cloudBottomIncrement);
 
 }
 
@@ -251,5 +244,79 @@ export function resetCloudSpeed(){
     cloudTopIncrement = 0.08
     cloudBottomIncrement = 0.079
 }
+
+export function removeClouds(){
+  console.log("REMOVINGClouds")
+    for (var i = 0; i < cloudArray.length; i++) {
+        cloudArray[i] = null;
+        boxArray[i] = null
+
+    }
+    cloudArray = [];
+    boxArray = [];
+    
+    while (allCloudsGroup.children.length > 0) {
+        var child = allCloudsGroup.children[0];
+        allCloudsGroup.remove(child);
+   
+    }
+
+    while (cloudGroupTop.children.length > 0) {
+        var child2 = cloudGroupTop.children[0];
+        cloudGroupTop.remove(child2);
+    }
+
+    while (cloudGroupBottom.children.length > 0) {
+        var child3 = cloudGroupBottom.children[0];
+        cloudGroupBottom.remove(child3);
+    }
+      
+      console.log("allCloudsGroup",allCloudsGroup)
+    scenery.remove(cloudUp);
+    scenery.remove(cloudDown);
+
+    scenery.remove(cloudGroupTop);
+
+    scenery.remove(cloudGroupBottom);
+
+    cloudGroupBottom = null;
+    scenery.remove(boxArray);
+
+    // scenery.remove cloud
+
+    scenery.remove(allCloudsGroup);
+
+
+    ///////////////////////////
+
+
+    cloudUpWidth =   null;
+    cloudUpHeight =   null;
+    cloudGroupXPos  = null;
+
+    scenery.remove(cloudUpTexture);
+    scenery.remove(cloudUpMaterial);
+    scenery.remove(cloudUpMesh);
+    scenery.remove(extraCloudDown);
+    scenery.remove(extraCloudUp);
+
+    
+    cloudDownYPosition = null;
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+}
+
+
 
 export {boundBoxMesh,boundBoxMeshBottom,cloudGroupTop,cloudGroupBottom,allCloudsGroup,boxArray,cloudTopIncrement,cloudBottomIncrement}

@@ -9,7 +9,7 @@ import * as appControl from './client';
 import * as animations from './animation';
 import * as models from './modelLoader';
 
-var geometry,material,characterMesh,currentPos,characterPosRound;
+var geometry,material,characterMesh,currentPos,characterPosRound,paddle;
 
 var upperBound,lowerBound,charX,charY,charZ,scaleX,scaleY,scaleZ,x,y,z;
 var ascent,rotZ,ascentDuration,clockwiseAnimationDuration,descentDuration,rotationBound,incrementalY,posZ,incrementalHeight,newPosition,box;
@@ -32,6 +32,7 @@ export function addCharacter(){
     
     characterMesh = new THREE.Mesh( geometry, material);
     characterGroup.add(characterMesh)
+    characterGroup.name = "characterGroup";
     scenery.add(characterGroup)
     console.log("CHARACTERGROUP",characterGroup)
 
@@ -108,6 +109,8 @@ export function addCharacter(){
 }
 
 export function fly3(){
+  paddle = characterScene.getObjectByName("paddle");
+  0.45
   currentPos = characterGroup.position.y;
  var flyPos = characterGroup.position.y + 0.52    // characterGroup.position.y += 0.8;
 
@@ -117,8 +120,10 @@ export function fly3(){
 
 //  animations.inflateParachute()
  // models.tilt()  
-
+//  0.3
  gsap.to(characterScene.rotation, { duration: 0.4, y:2.2, x:0.7, ease: "power2.out",onComplete:rotateBack3,overwrite:true });
+ gsap.to(paddle.position, { duration: 0.09, y:0.45, ease: "power1.out",onComplete:rotateBack3,overwrite:true });
+ gsap.to(paddle.rotation, { duration: 0.09, y:0,x:1.5,z:-1, ease: "power1.out",overwrite:true });
 
 
 }
@@ -136,6 +141,8 @@ export function fly3(){
 
   function rotateBack3(){
     gsap.to(characterScene.rotation, { duration: 0.9, y:0.5,x:0.5, ease: "power1.inOut",overwrite:true });
+    gsap.to(paddle.position, { duration: 0.09, y:0.58491450548172, ease: "power2.out",overwrite:true });
+    gsap.to(paddle.rotation, { duration: 0.09, y:0.5828474072245025,x:1.262939492981281,z:-2.512567726363155, ease: "power1.out",overwrite:true });
 
   }
 

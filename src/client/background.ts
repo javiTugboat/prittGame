@@ -19,6 +19,8 @@ export function createBackGround () {
     
     background = new THREE.Mesh ();
     staticBg = new THREE.Mesh ();
+    background.name = "background";
+    staticBg.name = "staticBg";
     // Un Mesh se compone de geometría y material
     var size_x_background = 30;
     var size_y_background = 20;
@@ -130,4 +132,12 @@ export function createBackGround () {
     console.log(bgTimeIncrement)
 
   }
+
+  export function removeBackground(){
+
+    scenery.remove(background,staticBg);
+  }
+
+
+
   export {bgTimeIncrement}

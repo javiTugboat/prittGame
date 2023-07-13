@@ -7,12 +7,13 @@ import gsap from "gsap";
 import * as envmap from './envmap'
 import * as loaders from './loader'
 import { attribute } from './listeners'
+import { scenery } from './client'
 
 const manager = new THREE.LoadingManager();
 
 const loader = new GLTFLoader(manager);
 var characterMesh,characterVar,characterScene,currentYRot,currentXRot
-
+var envMapAdded = false
 
  export function loadModel (){
 
@@ -27,7 +28,15 @@ loader.load( 'models/parapente.glb', function (characterMesh) {
           model.traverse((o) => {
             if(o.isMesh) o.geometry.computeVertexNormals()
             //  if (o.isMesh) o.material = characterinMaterial;
+            if(o.isMesh){
 
+              var material = o.material
+                if (material.map) {
+                  material.map.encoding = THREE.sRGBEncoding;
+                  
+                }
+
+              }
         
       });
     characterScene = characterVar.scenes[0];
@@ -39,8 +48,10 @@ loader.load( 'models/parapente.glb', function (characterMesh) {
 
     characterScene.rotation.set (0,1,0.1);
     characterScene.scale.set (1.15,1.15,1.15);
-    envmap.addEnvMaps();
 
+
+      envmap.addEnvMaps();
+  
     
 
   })
@@ -63,7 +74,16 @@ export function loadModel1 (){
             model.traverse((o) => {
               if(o.isMesh) o.geometry.computeVertexNormals()
               //  if (o.isMesh) o.material = characterinMaterial;
-  
+              if(o.isMesh){
+
+                var material = o.material
+                if (material.map) {
+                  material.map.encoding = THREE.sRGBEncoding;
+
+                }
+
+              }
+
           
         });
       characterScene = characterVar.scenes[0];
@@ -85,12 +105,13 @@ export function loadModel1 (){
   
   }
 
-  export function loadModel2(){
 
+
+  export function loadModel2(){
 
     loader.load( 'models/climber.glb', function (characterMesh) {
      
-    
+   
     
             characterVar = characterMesh;
     
@@ -98,7 +119,15 @@ export function loadModel1 (){
               model.traverse((o) => {
                 if(o.isMesh) o.geometry.computeVertexNormals()
                 //  if (o.isMesh) o.material = characterinMaterial;
-    
+                if(o.isMesh){
+
+                var material = o.material
+                  if (material.map) {
+                    material.map.encoding = THREE.sRGBEncoding;
+                    
+                  }
+  
+                }
             
           });
         characterScene = characterVar.scenes[0];
@@ -134,8 +163,15 @@ export function loadModel1 (){
               model.traverse((o) => {
                 if(o.isMesh) o.geometry.computeVertexNormals()
                 //  if (o.isMesh) o.material = characterinMaterial;
+                if(o.isMesh){
+
+                  var material = o.material
+                    if (material.map) {
+                      material.map.encoding = THREE.sRGBEncoding;
+                      
+                    }
     
-            
+                  }  
           });
         characterScene = characterVar.scenes[0];
         characterScene.position.set (-2,0.5,2 );
@@ -143,7 +179,6 @@ export function loadModel1 (){
         //////CHARACTER ROTATION
     
         console.log("characterROTATION",characterScene)
-    
         characterScene.rotation.set (0,1,0.1);
         characterScene.scale.set (1.35,1.35,1.35);
         envmap.addEnvMaps();
@@ -167,7 +202,6 @@ export function loadModel1 (){
         break;
     
         case 'character2':
-    
         break;
     
         case 'character3':
@@ -183,6 +217,9 @@ export function loadModel1 (){
      }
 
   }
+
+
+
 export function tilt(){
 
   currentYRot = characterScene.rotation.y
@@ -242,6 +279,17 @@ manager.onLoad = function(){
 //         console.log("exportFunctionWorks")
     
 // }
+export function removeModel(){
 
+while (characterGroup.children.length > 0) {
+
+    var child = characterGroup.children[0];
+    characterGroup.remove(child);
+
+}
+scenery.remove(characterVar)
+scenery.remove(characterGroup)
+
+}
 
 export{characterScene,characterVar}

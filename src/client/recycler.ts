@@ -18,7 +18,7 @@ export function recycleWorld(){
       }); 
     
       setTimeout(function() {
-        appControl.deleteScene()
+        // appControl.deleteScene()   
       }, 500);    
 
 }

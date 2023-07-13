@@ -3,7 +3,7 @@
 
 import { boundBoxMesh,boundBoxMeshBottom,cloudGroupTop,cloudGroupBottom,allCloudsGroup,boxArray } from './clouds'
 import { characterMesh,characterGroup } from './character'
-import { gameStarted,gameEnded } from './client'
+import { gameStarted,gameEnded,scenery } from './client'
 // import * as score from './score.js';
 import * as character from './character';
 import * as styles from './styles';
@@ -76,6 +76,26 @@ export function detectCollisions(){
         // No collision
     }
 
+   
+
+}
+
+export function removeCollisionBoxes(){
+
+  var cloudBox1 = null
+  var cloudBox2 = null
+  var cloudBox3 = null
+  var cloudBox4 = null
+  var cloudBox5 = null
+  var cloudBox6 = null
+
+
+  var intersects1 = null
+  var intersects2 = null
+  var intersects3 = null
+  var intersects4 = null
+  var intersects5 = null
+  var intersects6 = null
 
 
 }
