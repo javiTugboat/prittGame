@@ -14,6 +14,7 @@ import * as score from './score'
 import * as animations from './animation'
 import * as loader from './loader'
 import * as envmaps from './envmap'
+import * as coins from './coins'
 
 import * as recycler from './recycler'
 // import { gameSessionRunning } from './listeners'
@@ -108,6 +109,7 @@ export function loadModulesChar4(){
     background.createBackGround();
 
     clouds.createClouds();
+    coins.loadCoins();
     lights.createLights();
     character.addCharacter();
     models.loadModel();
