@@ -123,6 +123,8 @@ export function loadModulesChar1(){
     background.createBackGround();
 
     clouds.createTrekkingkRocks();
+    coins.loadCoins();
+
     lights.createLights();
     character.addCharacter();
     models.loadModel1();
@@ -135,6 +137,8 @@ export function loadModulesChar2(){
    background.createBackGround();
 
         clouds.createClouds();
+        coins.loadCoins();
+
         lights.createLights();
         character.addCharacter();
         models.loadModel2();
@@ -152,6 +156,8 @@ export function loadModulesChar3(){
     background.createBackGround();
 
     clouds.createKayakRocks();
+    coins.loadCoins();
+
     lights.createLights();
     character.addCharacter();
     models.loadModel3();
@@ -176,6 +182,7 @@ export function animate() {
     if(gameStarted==true){
         character.fall();
         clouds.moveClouds();
+        coins.moveCoins();
         collisions.detectCollisions();
         score.countScore();
         // cameracontrol.panCamera(); 
@@ -225,11 +232,15 @@ loader.launchLoader();
 
 export function deleteScene(){
     models.removeModel()
+    envmaps.removeMaterials()
+    animations.stopAnims();
     clouds.removeClouds()
     background.removeBackground()
     collisions.removeCollisionBoxes()
     // lights.removeLights()
     envmaps.removeEnvMaps()
+    coins.removeCoins()
+    listeners.clearCodeScreen()
     setTimeout(function(){
 
         // scenery = null;

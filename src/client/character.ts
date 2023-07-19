@@ -8,6 +8,7 @@ import * as collisions from './collisions';
 import * as appControl from './client';
 import * as animations from './animation';
 import * as models from './modelLoader';
+import { attribute } from './listeners';
 
 var geometry,material,characterMesh,currentPos,characterPosRound,paddle;
 
@@ -17,6 +18,7 @@ var descentAnimation,actualPosition,descentDuration,ascentDuration,ascentAnimati
 var fallAnimPlayed = false;
 
 export function addCharacter(){
+
 
     //crear geometria temporal
      y = 1.8;
@@ -44,8 +46,31 @@ export function addCharacter(){
 
    
     // this.scale.set(this.scaleX ,this.scaleY ,this.scaleZ);
-    characterMesh.position.set (-2,0,1.5);
+    switch (attribute){
 
+      case 'character1':
+        characterMesh.position.set (-2,0,1.5);
+
+      break;
+  
+      case 'character2':
+        characterMesh.position.set (-2,0,1.5);
+
+      break;
+  
+      case 'character3':
+        characterMesh.position.set (-2,0,1.5);
+
+      break;
+  
+      case 'character4':
+        characterMesh.position.set (-2.5,-1,1.5);
+
+      break;
+      
+      default: 
+  
+    }
     // Instanciacion de variables para la subida y bajada
 
     actualPosition = {y: 0};

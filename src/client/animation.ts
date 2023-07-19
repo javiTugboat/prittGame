@@ -3,6 +3,7 @@ import gsap from "gsap";
 
 import { characterScene,characterVar } from './modelLoader'
 import { fallAnimPlayed } from './character';
+import { attribute } from './listeners'
 
 var mixer,animUp,animDown,animLoop,actionUp,actionDown,actionLoop
 var trek,trekAction
@@ -10,7 +11,7 @@ var climb,climbDown,climbAction,climbDownAction,climbUpPlaying = false
 var row,pala,rowAction,palaAction,palaMixer
 var mixerDown,animUpPlaying = false
 var parachute1Target = {number: 0},parachute2Target= {number: 0}, parachute1Morph,parachute2Morph
-
+var request1,request2,request3,request4
 export function addClips4(){
     console.log("CHARVAR",characterVar)
     console.log("CHASCEBE",characterScene)
@@ -134,7 +135,7 @@ function animateMixer(){
     var deltaSeconds = 0.07;
     var deltaSeconds2 = 0.04;
 
-    requestAnimationFrame(animateMixer)
+    request4 = requestAnimationFrame(animateMixer)
     mixer.update(deltaSeconds)
     mixerDown.update(deltaSeconds2)
 
@@ -143,7 +144,7 @@ function animateMixer(){
 function animateMixer1(){
 
     var deltaSeconds = 0.035;
-    requestAnimationFrame(animateMixer1)
+    request1 = requestAnimationFrame(animateMixer1)
     mixer.update(deltaSeconds)
 
 }
@@ -151,7 +152,7 @@ function animateMixer1(){
 function animateMixer2(){
 
     var deltaSeconds = 0.07;
-    requestAnimationFrame(animateMixer2)
+    request2 = requestAnimationFrame(animateMixer2)
     mixer.update(deltaSeconds)
     var deltaSeconds2 = 0.04;
     mixerDown.update(deltaSeconds2)
@@ -161,7 +162,7 @@ function animateMixer2(){
 function animateMixer3(){
 
     var deltaSeconds = 0.05;
-    requestAnimationFrame(animateMixer3)
+    request3 = requestAnimationFrame(animateMixer3)
     mixer.update(deltaSeconds)
 
 }
@@ -258,6 +259,40 @@ export function animationLoop2(){
     }else{}
 
     
+
+
+}
+
+export function stopAnims(){
+
+
+
+    switch (attribute){
+
+        case 'character1':
+            cancelAnimationFrame(request1);
+
+        break;
+
+        case 'character2':
+            cancelAnimationFrame(request2);
+
+        break;
+
+        case 'character3':
+            cancelAnimationFrame(request3);
+
+        break;
+
+        case 'character4':
+            cancelAnimationFrame(request4);
+
+        break;
+        
+        default: 
+
+    }
+
 
 
 }

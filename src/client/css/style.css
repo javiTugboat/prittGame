@@ -418,3 +418,13 @@ justify-content: center;
 input.middle:focus {
   outline-width: 0;
 }
+
+#extraPointsImg{
+  top:50%;
+  left:50%;
+  width:150px;
+  height:115px;
+  transform: translate(-50%,-50%);
+
+
+}

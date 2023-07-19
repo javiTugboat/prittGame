@@ -3,6 +3,8 @@
 
 import { boundBoxMesh,boundBoxMeshBottom,cloudGroupTop,cloudGroupBottom,allCloudsGroup,boxArray } from './clouds'
 import { characterMesh,characterGroup } from './character'
+import {coinMesh,coinVar} from './coins'
+
 import { gameStarted,gameEnded,scenery } from './client'
 // import * as score from './score.js';
 import * as character from './character';
@@ -11,8 +13,11 @@ import * as clouds from './clouds';
 
 import * as THREE from 'three'
 import * as appControl from './client';
-var cloudTrig0,cloudTrig1,cloudTrig2,cloudTrig3,cloudTrig4,cloudTrig5
+import * as score from './score';
 
+var cloudTrig0,cloudTrig1,cloudTrig2,cloudTrig3,cloudTrig4,cloudTrig5
+var coinCollisioned = false;
+var coinMat,coinMat2, coinMat3 
 export function resetAll(){
 
 
@@ -41,8 +46,14 @@ var triggerArray = [cloudTrig0,cloudTrig1,cloudTrig2,cloudTrig3,cloudTrig4,cloud
 
 export function detectCollisions(){
 
-  var box0 = new THREE.Box3().setFromObject(characterMesh);
+   
+  coinMat = coinVar.scene.children[0].children[0].material
+  coinMat2 = coinVar.scene.children[0].children[1].material
+  coinMat3 = coinVar.scene.children[0].children[2].material
   
+  var box0 = new THREE.Box3().setFromObject(characterMesh);
+  var coin0 = new THREE.Box3().setFromObject(coinVar.scene.children[0]);
+
     var cloudBox1 = new THREE.Box3().setFromObject(boxArray[0].children[0]);
     var cloudBox2 = new THREE.Box3().setFromObject(boxArray[1].children[0]);
     var cloudBox3 = new THREE.Box3().setFromObject(boxArray[2].children[0]);
@@ -57,6 +68,7 @@ export function detectCollisions(){
     var intersects4 = box0.intersectsBox(cloudBox4);
     var intersects5 = box0.intersectsBox(cloudBox5);
     var intersects6 = box0.intersectsBox(cloudBox6);
+    var intersectsCoin = box0.intersectsBox(coin0);
 
 
     // var box3 = new THREE.Box3().setFromObject(boundBoxMeshBottom);
@@ -76,11 +88,43 @@ export function detectCollisions(){
         // No collision
     }
 
+    if (intersectsCoin) {
+
+      if (!coinCollisioned){
+        console.log("coinCollision!")
+        coinMat.opacity = 0;
+        coinMat.transparent = true;
+        coinMat.alphaTest = 0.5;
+
+        coinMat2.opacity = 0;
+        coinMat2.transparent = true;
+        coinMat2.alphaTest = 0.5;
+
+        coinMat3.opacity = 0;
+        coinMat3.transparent = true;
+        coinMat3.alphaTest = 0.5;
+        coinCollisioned = true;
+        score.addCoinPoints();
+      } else{
+
+
+      }
+    }
    
 
 }
 
+export function resetCoin(){
+
+  coinMat.opacity = 1;
+  coinMat2.opacity = 1;
+  coinMat3.opacity = 1;
+  coinCollisioned = false;
+
+}
+
 export function removeCollisionBoxes(){
+
 
   var cloudBox1 = null
   var cloudBox2 = null
@@ -96,6 +140,22 @@ export function removeCollisionBoxes(){
   var intersects4 = null
   var intersects5 = null
   var intersects6 = null
+
+   cloudBox1.dispose()
+  cloudBox2.dispose()
+  cloudBox3.dispose()
+  cloudBox4.dispose()
+  cloudBox5.dispose()
+  cloudBox6.dispose()
+
+
+  intersects1.dispose()
+  intersects2.dispose()
+  intersects3.dispose()
+  intersects4.dispose()
+  intersects5.dispose()
+  intersects6.dispose()
+
 
 
 }

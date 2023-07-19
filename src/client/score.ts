@@ -3,12 +3,16 @@ var bestScore = 0;
 var bestScoreCounter;
 const scoreText= document.getElementById( 'score' );
 const bestText= document.getElementById( 'bestScore' );
+const coinText= document.getElementById( 'extraPointsImg' );
+import gsap from "gsap";
+
 // const prittLogo = document.getElementById("prittLogo");
 var strNumber,strBestScore;
 import * as background from './background'
 import * as clouds from './clouds'
 
 import {cloudTopIncrement,cloudBottomIncrement} from './clouds'
+gsap.set(coinText,  {autoAlpha:0,scale:0.95});
 
 
 export function countScore(){
@@ -48,5 +52,20 @@ function checkScore(){
       }
 
 
+
+}
+
+export function addCoinPoints(){
+
+    scoreCounter += 500;
+    strNumber = scoreCounter.toString();
+    scoreText.innerHTML = strNumber;
+    gsap.to(coinText,  {autoAlpha:1,duration:0.5,onComplete:hideCoinText,ease:"Back.out",scale:1});
+
+}
+
+function hideCoinText(){
+
+    gsap.to(coinText,  {autoAlpha:0,duration:0.5,scale:0.95});
 
 }

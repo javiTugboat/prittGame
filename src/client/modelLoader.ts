@@ -285,7 +285,6 @@ while (characterGroup.children.length > 0) {
 
     var child = characterGroup.children[0];
     characterGroup.remove(child);
-
 }
 scenery.remove(characterVar)
 scenery.remove(characterGroup)

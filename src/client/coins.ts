@@ -7,17 +7,20 @@ import * as envmap from './envmap'
 import * as loaders from './loader'
 import { attribute } from './listeners'
 import { scenery } from './client'
+import { cloudGroupTop,cloudGroupBottom,allCloudsGroup } from './clouds'
+import * as collisions from './collisions';
 
 const coinManager = new THREE.LoadingManager();
 
 const loader = new GLTFLoader(coinManager);
 var coinMesh,coinVar,coinScene,currentYRot,currentXRot
 var envMapAdded = false
-
+var coinIncrement = 0.04
+var cloudPosition,coinAnimation
  export function loadCoins (){
 
 
-loader.load( 'models/parapente.glb', function (coinMesh) {
+loader.load( 'models/coins.glb', function (coinMesh) {
  
 
 
@@ -39,9 +42,9 @@ loader.load( 'models/parapente.glb', function (coinMesh) {
         
       });
     coinScene = coinVar.scenes[0];
-    coinScene.position.set (-2,0.5,2 );
-
-    //////CHARACTER ROTATION
+    coinScene.position.set (8,0.5,2.5 );
+    coinScene.position.y = cloudGroupTop.position.y - 6;
+    //////CHARACTER ROTATION  
 
     console.log("coinROTATION",coinScene)
 
@@ -66,8 +69,34 @@ coinManager.onLoad = function(){
     
   scenery.add(coinScene)
   // loaders.removeSecondLoader();
-
+  animCoins()
   
+
+}
+
+function animCoins(){
+  //q: how do i cancel the requestAnimationFrame?
+
+  coinAnimation = requestAnimationFrame(animCoins);
+
+  // Rotate the cube on the Y-axis
+  coinScene.rotation.y += 0.12;
+
+}
+
+export function moveCoins(){
+
+  coinScene.position.x -= coinIncrement
+
+  if (coinScene.position.x <= -8){
+    cloudPosition = allCloudsGroup.position.y;
+    console.log("cloudPosition",cloudPosition)
+    coinScene.position.x = 8
+    coinScene.position.y = cloudPosition - 6;
+    collisions.resetCoin()
+
+  }
+
 
 }
 
@@ -76,6 +105,12 @@ coinManager.onLoad = function(){
 //         console.log("exportFunctionWorks")
     
 // }
+export function removeCoins(){
 
+  scenery.remove(coinScene)
 
-export{coinScene,coinVar}
+  cancelAnimationFrame(coinAnimation);
+
+}
+
+export{coinScene,coinVar,coinMesh}

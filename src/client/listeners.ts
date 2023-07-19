@@ -40,6 +40,7 @@ const codeScreen4 = document.getElementById('codeScreen4' );
 const closeButt = document.getElementById('closeButt' );
 const applyButt = document.getElementById('applyButt' );
 
+var codeScreenArray = [codeScreen1,codeScreen2,codeScreen3,codeScreen4]
 var gameSessionRunning = false;
 
 export function addListeners(){
@@ -162,13 +163,13 @@ function codeClicks(e){
         break;
 
         case 'character3':
-            codeScreen2.style.display = "block"
+            codeScreen3.style.display = "block"
             startGif.src = "img/start_Kayak.gif"
 
         break;
 
         case 'character4':
-            codeScreen2.style.display = "block"
+            codeScreen4.style.display = "block"
             startGif.src = "img/start_Parachute.gif"
 
         break;
@@ -180,12 +181,25 @@ function codeClicks(e){
 
 }
 
-function closeCodeScreen(e){
+export function closeCodeScreen(e){
+
+    for (var i = 0; i < codeScreenArray.length; i++) {
+        codeScreenArray[i].style.display = "none";
+    }
+
 
     gsap.to(enterCodeScreen,  { autoAlpha:0, duration: 0.35, ease: 'back.inOut',scale:0.95 });
 
     gsap.to(characters,  { autoAlpha:1, duration: 0.35, ease: 'back.out',scale:1 });
 
+
+}
+
+export function clearCodeScreen(){
+
+    for (var i = 0; i < codeScreenArray.length; i++) {
+        codeScreenArray[i].style.display = "none";
+    }
 
 }
 
@@ -274,7 +288,7 @@ function startGame(e){
 }
 
 function backToMenu(e){
-    // styles.raiseCurtain()
+    styles.raiseCurtain()
 
     // recycler.recycleWorld()
     appControl.deleteScene()

@@ -148,13 +148,14 @@ export function createTrekkingkRocks(){
     createBoundingBoxes();
 
     cloudDown = cloudUp.clone();
+    cloudDown.name = "cloudDowny"
     extraCloudUp = cloudUp.clone();
 
     cloudDown.position.y = cloudDownYPosition;
     extraCloudUp.position.y = 3;
 
     cloudGroupTop.add(cloudUp,cloudDown,extraCloudUp);
-
+    cloudGroupTop.name = "cloudGroupTop"
 
      cloudGroupBottom = cloudGroupTop.clone();
 
@@ -229,7 +230,7 @@ export function moveClouds(){
       var randomY = (Math.random() * 8) - 4;
       allCloudsGroup.position.y = randomY; 
       resizeClouds();
- 
+        
     }
 
 }

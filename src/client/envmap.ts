@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { characterScene,characterVar } from './modelLoader'
 import { pmremGenerator } from './client'
 
-import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader.js';
+// import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader.js';
 
 var envMap,exrCubeRenderTarget,exrBackground;
 var bodyParts = [];
@@ -15,33 +15,21 @@ var envMapLoaded = false;
 export function addEnvMaps(){
   if (!envMapLoaded){
     console.log("LOADINGENVMAP")
-    const exrLoader = new EXRLoader();
+    
+    const cubemapPath = "img/";
+    const cubeMap = [
+      `${cubemapPath}clouds1_east.jpg`,
+      `${cubemapPath}clouds1_west.jpg`,
+      `${cubemapPath}clouds1_up.jpg`,
+      `${cubemapPath}clouds1_down.jpg`,
+      `${cubemapPath}clouds1_north.jpg`,
+      `${cubemapPath}clouds1_south.jpg`,
+    ];
 
-    // envMap = textureLoader.load('./img/hdr.exr');
+      const cubeTextureLoader = new THREE.CubeTextureLoader();
+      envMap = cubeTextureLoader.load(cubeMap);
 
-    exrLoader.load(
-        './img/hdr.exr',
-        (texture) => {
-          // The texture is loaded successfully
-          // You can use the texture in your Three.js scene
-          // For example, you can assign it to the envMap property of materials
-          envMap = texture;
-          texture.mapping = THREE.EquirectangularReflectionMapping;
 
-          exrCubeRenderTarget = pmremGenerator.fromEquirectangular( texture );
-          exrBackground = texture;
-          texture.encoding = THREE.LinearEncoding;
-          console.log("ENVMAP",envMap)
-        },
-        (progress) => {
-          // Progress callback (optional)
-        //   console.log('Loading progress:', progress);
-        },
-        (error) => {
-          // Error callback (optional)
-        //   console.error('Error loading EXR texture:', error);
-        }
-      );
         envMapLoaded = true;
       }
 
@@ -95,6 +83,18 @@ setTimeout(function() {
     }
 
 }, 500);
+
+}
+
+export function removeMaterials(){
+
+  for (var i = 0; i < matArray.length; i++) {
+
+    matArray[i].dispose();
+
+    // matArray[i].map.encoding = THREE.sRGBEncoding;
+
+}
 
 }
 
