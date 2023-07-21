@@ -138,8 +138,8 @@ export function createBackGround () {
     scenery.remove(background,staticBg);
     background.material.dispose();
     background.geometry.dispose();
-    background.dispose();
-    staticBg.dispose();
+    // background.dispose();
+    // staticBg.dispose();
     staticBg.geometry.dispose();
 
     staticBg.material.dispose();

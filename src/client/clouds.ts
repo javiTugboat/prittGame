@@ -2,7 +2,8 @@ import * as THREE from 'three'
 import { scenery } from './client'
 
 var cloudUpMesh,cloudUpTexture,cloudUpMaterial,cloudUp,cloudUpHeight,cloudUpMaterial,cloudUpYPosition,cloudUpXposition;
-
+var trekkingBushTexture,trekkingTreeTexture,trekkingArray
+var kayakGreenRockTexture,kayakBushTexture,kayakArray
 var cloudDownMesh,cloudDownTexture,cloudDownMaterial,cloudDown,cloudDownWidth,cloudDownHeight,cloudDownMaterial,cloudDownYPosition,cloudDownXposition,cloudGroupXPos
 var cloudGroupBottom,cloudUpWidth
 
@@ -87,6 +88,11 @@ export function createKayakRocks(){
     cloudGroupXPos = cloudUpWidth * 2;
 
     cloudUpTexture= new THREE.TextureLoader().load('img/kayakRocks.png');
+    kayakBushTexture= new THREE.TextureLoader().load('img/kayakBush.png');
+    kayakGreenRockTexture= new THREE.TextureLoader().load('img/kayakRocks2.png');
+    kayakBushTexture.encoding = THREE.sRGBEncoding;
+    kayakGreenRockTexture.encoding = THREE.sRGBEncoding;
+
     cloudUpMaterial = new THREE.MeshBasicMaterial ({map: cloudUpTexture,transparent:true});
     cloudUpMesh = new THREE.BoxGeometry (cloudUpWidth,  cloudUpHeight, 0);
     
@@ -127,21 +133,54 @@ export function createKayakRocks(){
     allCloudsGroup.position.z = 1.5;
 
     cloudArray = [cloudUp,cloudDown,extraCloudUp,topCloudDown,middleCloudDown,extraCloudDown]
+    kayakArray = [cloudUpTexture,kayakBushTexture,kayakGreenRockTexture]
+
     resizeClouds();
 
 }
 
+export function shuffleKayakObjects(){
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    shuffleArray(kayakArray);
+
+    for (let i = 0; i < cloudArray.length; i++) {
+        const mesh = cloudArray[i];
+        const texture = kayakArray[i % kayakArray.length];
+      
+        // Assuming the mesh has a single material and you want to apply the texture as a map
+        mesh.material = mesh.material.clone();
+        mesh.material.map = texture;
+        mesh.material.needsUpdate = true;
+      }
+
+
+
+
+}
+
+
 export function createTrekkingkRocks(){
 
 
-    cloudUpWidth = 6.5;
+    cloudUpWidth = 5;
     cloudUpHeight = 3.5;
     cloudGroupXPos = cloudUpWidth * 2;
 
-    cloudUpTexture= new THREE.TextureLoader().load('img/trekkingRocks.png');
+    cloudUpTexture = new THREE.TextureLoader().load('img/trekkingRocks.png');
+    trekkingBushTexture = new THREE.TextureLoader().load('img/trekkingTree.png');
+    trekkingTreeTexture = new THREE.TextureLoader().load('img/trekkingBush.png');
+    trekkingBushTexture.encoding = THREE.sRGBEncoding;
+    trekkingTreeTexture.encoding = THREE.sRGBEncoding;
     cloudUpMaterial = new THREE.MeshBasicMaterial ({map: cloudUpTexture,transparent:true});
     cloudUpMesh = new THREE.BoxGeometry (cloudUpWidth,  cloudUpHeight, 0);
-    
+     
     cloudUp = new THREE.Mesh(cloudUpMesh, cloudUpMaterial);
     cloudUp.rotation.x = 0.2;
     cloudDownYPosition = -3;
@@ -182,9 +221,41 @@ export function createTrekkingkRocks(){
     allCloudsGroup.position.z = 1.5;
 
     cloudArray = [cloudUp,cloudDown,extraCloudUp,topCloudDown,middleCloudDown,extraCloudDown]
+    // console.log("cloudArray",cloudArray)
+    trekkingArray = [cloudUpTexture,trekkingBushTexture,trekkingTreeTexture]
     resizeClouds();
 
 }
+
+
+export function shuffleTrekkingObjects(){
+    console.log('SHUFFLEOBJECTS')
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    shuffleArray(trekkingArray);
+
+    for (let i = 0; i < cloudArray.length; i++) {
+        const mesh = cloudArray[i];
+        const texture = trekkingArray[i % trekkingArray.length];
+      
+        // Assuming the mesh has a single material and you want to apply the texture as a map
+        mesh.material = mesh.material.clone();
+        mesh.material.map = texture;
+        mesh.material.needsUpdate = true;
+      }
+
+
+
+
+}
+
+
 
 function resizeClouds(){
     // var randomScale = 0.7;

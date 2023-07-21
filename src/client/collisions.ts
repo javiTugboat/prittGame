@@ -125,6 +125,20 @@ export function resetCoin(){
 
 export function removeCollisionBoxes(){
 
+  // cloudBox1.dispose()
+  // cloudBox2.geometry.dispose()
+  // cloudBox3.geometry.dispose()
+  // cloudBox4.geometry.dispose()
+  // cloudBox5.geometry.dispose()
+  // cloudBox6.geometry.dispose()
+
+
+  // intersects1.geometry.dispose()
+  // intersects2.geometry.dispose()
+  // intersects3.geometry.dispose()
+  // intersects4.geometry.dispose()
+  // intersects5.geometry.dispose()
+  // intersects6.geometry.dispose()
 
   var cloudBox1 = null
   var cloudBox2 = null
@@ -141,20 +155,7 @@ export function removeCollisionBoxes(){
   var intersects5 = null
   var intersects6 = null
 
-   cloudBox1.dispose()
-  cloudBox2.dispose()
-  cloudBox3.dispose()
-  cloudBox4.dispose()
-  cloudBox5.dispose()
-  cloudBox6.dispose()
 
-
-  intersects1.dispose()
-  intersects2.dispose()
-  intersects3.dispose()
-  intersects4.dispose()
-  intersects5.dispose()
-  intersects6.dispose()
 
 
 

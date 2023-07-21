@@ -123,6 +123,7 @@ export function loadModulesChar1(){
     background.createBackGround();
 
     clouds.createTrekkingkRocks();
+    clouds.shuffleTrekkingObjects();
     coins.loadCoins();
 
     lights.createLights();
@@ -156,6 +157,7 @@ export function loadModulesChar3(){
     background.createBackGround();
 
     clouds.createKayakRocks();
+    clouds.shuffleKayakObjects();
     coins.loadCoins();
 
     lights.createLights();
